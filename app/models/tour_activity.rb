@@ -1,0 +1,2 @@
+class TourActivity < ApplicationRecord
+end
