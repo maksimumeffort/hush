@@ -1,0 +1,9 @@
+<h1>Tours new</h1>
+<p>Create a new tour</p>
+
+<%= simple_form_for(@tour) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.submit %>
+
+<% end %>
