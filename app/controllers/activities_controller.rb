@@ -19,13 +19,14 @@ class ActivitiesController < ApplicationController
     @activity.update(activity_params)
     redirect_to activities_path
   end
-<<<<<<< HEAD
+
   def destroy
     @activity.destroy
     redirect_to tour_path(@activity.tour_activity.tour)
   end
 
   private 
+  
   def find_activity
     @activity = Activity.find(params[:id])
   end
