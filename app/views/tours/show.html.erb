@@ -1,3 +1,7 @@
 <h1>
   <%= @tour.name %>
 </h1>
+
+<li>
+  <%=  link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %>
+</li>
