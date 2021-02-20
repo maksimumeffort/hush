@@ -6,7 +6,7 @@ class ActivitiesController < ApplicationController
   def create
     @activity = Activity.new(activity_params)
     @activity.save
-    redirect_to activity_path(@activity)
+    # redirect_to tour_path(@activity.tour_activity.tour)
   end
 
   def edit
