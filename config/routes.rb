@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'locations/new'
-  get 'locations/edit'
-  get 'activities/new'
-  get 'activities/edit'
   devise_for :users
 
   resources :tours
