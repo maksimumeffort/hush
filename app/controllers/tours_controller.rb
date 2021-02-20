@@ -1,6 +1,7 @@
 class ToursController < ApplicationController
-    # skip_before_action :authenticate_user!, only: [:index, :show]
-    # before_action :find_tour, only: [:edit, :show, :update, :destroy]
+  def index
+    @tours = Tour.all
+  end
     
   def new
       @tour = Tour.new
