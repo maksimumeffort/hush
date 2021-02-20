@@ -1,5 +1,5 @@
 class LocationsController < ApplicationController
-  before_action :find_location, only: [:show, :edit, :update, :destroy]
+  before_action :find_location, only: [:show, :edit, :update, :show, :destroy]
 
   def new
     @location = Location.new
@@ -8,11 +8,13 @@ class LocationsController < ApplicationController
   def create
     @location = Location.new(location_params)
     @location.save
-    redirect_to locations_path(@location)
+    redirect_to location_path(@location)
   end
 
   def edit
+  end
 
+  def show
   end
 
   def location_params
@@ -21,7 +23,7 @@ class LocationsController < ApplicationController
 
   def update
     @location.update(location_params)
-    redirect_to locations_path(@location)
+    redirect_to location_path(@location)
   end
 
   private 
