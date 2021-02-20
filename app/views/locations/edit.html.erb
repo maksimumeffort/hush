@@ -1,2 +1,8 @@
-<h1>Locations#edit</h1>
-<p>Find me in app/views/locations/edit.html.erb</p>
+<h1>Activity edit</h1>
+
+<%= simple_form_for(@activity) do |f| %>
+  <%= f.input :address %>
+  <%= f.input :opening_time %>
+  <%= f.input :finish_time %>
+  <%= f.submit %>
+<% end %>
