@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'activities/new'
+  get 'activities/edit'
   devise_for :users
 
   resources :tours
