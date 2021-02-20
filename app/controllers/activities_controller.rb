@@ -2,6 +2,13 @@ class ActivitiesController < ApplicationController
   before_action :find_activity, only: [:edit, :show, :update, :destroy]
 
   def new
+    @activity = Activity.new
+  end
+
+  def create
+    @activity = Activity.new(activity_params)
+    @activity.save
+    redirect_to activity_path(@activity)
   end
 
   def edit
@@ -14,5 +21,9 @@ class ActivitiesController < ApplicationController
 
   def find_activity
     @activity = Activity.find(params[:id])
+  end
+  
+  def activity_params
+    params.require(:activity).permit(:name, :duration, :description, :requirements)
   end
 end
