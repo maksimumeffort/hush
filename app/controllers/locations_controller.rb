@@ -4,4 +4,10 @@ class LocationsController < ApplicationController
 
   def edit
   end
+
+  def destroy
+    @location.destroy
+    redirect_to locations_path
+  end
 end
+
