@@ -1,4 +1,4 @@
 class Activity < ApplicationRecord
-    belongs_to :tour_activity, :location
+    belongs_to :location
     validates :name, :duration, :description, :requirements, presence: true
 end

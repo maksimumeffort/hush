@@ -1,2 +1,13 @@
-<h1>Activities#edit</h1>
-<p>Find me in app/views/activities/edit.html.erb</p>
+<h1>Activities Edit</h1>
+<p>Edit activity below</p>
+
+<%= simple_form_for(@activity) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :start_time, label: "Start Time"%>
+  <%= f.input :finish_time, label: "Finish Time"%>
+  <%= f.input :duration%>
+  <%= f.input :description %>
+  <%= f.input :requirements %>
+  <%= f.submit %>
+  
+<% end %>
