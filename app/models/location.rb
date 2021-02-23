@@ -1,4 +1,7 @@
 class Location < ApplicationRecord
     has_many :activities
-    validates :address, presence: true
+    belongs_to :user
+
+    validates :longitude, :latitude, :address, presence: true
+
 end
