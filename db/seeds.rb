@@ -18,7 +18,7 @@ puts "fun successfully removed "
 
 user1 = User.create!(
   email: "user@user.com",
-  password: 123456,
+  password: 123456
   # name: Faker::Name.name,
   # description: Faker::Quote.jack_handey,
   # username: Faker::Game.title
@@ -26,8 +26,8 @@ user1 = User.create!(
 
 user2 = User.create!(
   email: "user2@user.com",
-  password: 123456,
-  # name: Faker::Name.name,
+  password: 123456
+    # name: Faker::Name.name,
   # description: Faker::Quote.jack_handey,
   # username: Faker::Game.title
 )
@@ -35,7 +35,7 @@ user2 = User.create!(
 10.times do
   User.create!(
   email: Faker::Internet.email,
-  password: 123456,
+  password: 123456
   # name: Faker::Name.name,
   # description: Faker::Quote.jack_handey,
   # username: Faker::Game.title
@@ -51,7 +51,7 @@ puts "done creating all users "
 
   Location.create!(
     # user: user1.id,
-    user: User.all.sample
+    user_id: User.all.sample.id,
     latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
     longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
     address: Faker::Address.full_address,
@@ -62,7 +62,7 @@ end
 20.times do
   Location.create!(
     # user: user2.id,
-    user: User.all.sample
+    user_id: User.all.sample.id,
     latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
     longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
     address: Faker::Address.full_address)
@@ -87,7 +87,7 @@ end
     duration: (1-1440).to_a.sample,
     start_time: time,
     finish_time: time + (1..5).to_a.sample,
-    location: Location.all.sample,
+    location: Location.all.sample
     )
 
   TourActivity.create!(
