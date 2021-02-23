@@ -4,6 +4,7 @@ class Tour < ApplicationRecord
     has_many :tour_activities
     has_many :bookings
     belongs_to :tour, optional: true
+    belongs_to :user
 
     has_many :activities, through: :tour_activities
 

@@ -18,27 +18,27 @@ puts "fun successfully removed "
 
 user1 = User.create!(
   email: "user@user.com",
-  password: 123456
+  password: 123456,
   # name: Faker::Name.name,
-  # description: Faker::Quote.jack_handey,
-  # username: Faker::Game.title
+  bio: Faker::Quote.jack_handey,
+  username: Faker::Game.title
 )
 
 user2 = User.create!(
   email: "user2@user.com",
-  password: 123456
+  password: 123456,
     # name: Faker::Name.name,
-  # description: Faker::Quote.jack_handey,
-  # username: Faker::Game.title
+  bio: Faker::Quote.jack_handey,
+  username: Faker::Game.title
 )
 
 10.times do
   User.create!(
   email: Faker::Internet.email,
-  password: 123456
+  password: 123456,
   # name: Faker::Name.name,
-  # description: Faker::Quote.jack_handey,
-  # username: Faker::Game.title
+  bio: Faker::Quote.jack_handey,
+  username: Faker::Game.title
 )
 
 end
@@ -51,7 +51,7 @@ puts "done creating all users "
 
   Location.create!(
     # user: user1.id,
-    user_id: User.all.sample.id,
+    user: User.all.sample,
     latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
     longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
     address: Faker::Address.full_address,
@@ -62,40 +62,55 @@ end
 20.times do
   Location.create!(
     # user: user2.id,
-    user_id: User.all.sample.id,
+    user: User.all.sample,
     latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
     longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
     address: Faker::Address.full_address)
 end
 
 10.times do
+# puts "creating 1 user & 1 tour"
+
+  user = User.all.sample
+
   Tour.create!(
-    user: User.all.sample,
+    user: user,
     name: Faker::Coffee.blend_name,
     description: Faker::Coffee.notes,
     completed: false
     )
 
+# puts "created 1 user and 1 tour"
+
   10.times do
+
+# puts "creating 1 activity"
 
   time = Time.now - (1..5).to_a.sample
 
   Activity.create!(
+    user: user,
     name: Faker::Game.genre,
     description: Faker::Movie.quote,
     requirements: Faker::Movie.quote,
-    duration: (1-1440).to_a.sample,
+    duration: (1..1440).to_a.sample,
     start_time: time,
     finish_time: time + (1..5).to_a.sample,
     location: Location.all.sample
     )
+
+  # puts "creating 1 tour activity"
 
   TourActivity.create!(
     tour: Tour.last,
     activity: Activity.last,
     completed: false
     )
+
+# puts "created 1 activity and 1 tour activity"
   end
+
+puts "created #{User.count} users, #{Tour.count} tours, #{Activity.count} activities, #{TourActivity.count} tour activities."
 end
 
 10.times do
@@ -109,23 +124,4 @@ end
 
 
 puts "done creating all fun stuff "
-
-# Inspection.all.each do |ins|
-#   if ins.user_id == user1.id
-#     Booking.create(
-#     status: "Pending",
-#     inspection_id: ins.id,
-#     user_id: user2.id,
-#     note: Faker::Movie.quote,
-#     )
-#   else
-#     Booking.create(
-#     status: "Pending",
-#     inspection_id: ins.id,
-#     user_id: user1.id,
-#     note: Faker::Movie.quote,
-#     )
-#   end
-# end
-# puts "done creating all seeds "
 
