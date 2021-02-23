@@ -15,4 +15,10 @@ class LocationsController < ApplicationController
   def location_params
     params.require(:location).permit(:longitude, :latitude, :address)
   end
+
+  def destroy
+    @location.destroy
+    redirect_to locations_path
+  end
 end
+
