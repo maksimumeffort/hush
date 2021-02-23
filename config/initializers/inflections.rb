@@ -14,3 +14,9 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+
+ActiveSupport::Inflector.inflections do |inflect|
+  inflect.irregular 'tour_activity', 'tour_activities'
+  inflect.irregular 'activity', 'activities'
+end
