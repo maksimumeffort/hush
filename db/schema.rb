@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_02_23_101258) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,7 +26,9 @@ ActiveRecord::Schema.define(version: 2021_02_23_101258) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "duration"
     t.bigint "location_id", null: false
+    t.bigint "user_id", null: false
     t.index ["location_id"], name: "index_activities_on_location_id"
+    t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
   create_table "bookings", force: :cascade do |t|
@@ -48,6 +51,8 @@ ActiveRecord::Schema.define(version: 2021_02_23_101258) do
     t.datetime "closing_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_locations_on_user_id"
   end
 
   create_table "tour_activities", force: :cascade do |t|
@@ -82,14 +87,17 @@ ActiveRecord::Schema.define(version: 2021_02_23_101258) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "bio"
     t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "activities", "locations"
+  add_foreign_key "activities", "users"
   add_foreign_key "bookings", "tours"
   add_foreign_key "bookings", "users"
+  add_foreign_key "locations", "users"
   add_foreign_key "tour_activities", "activities"
   add_foreign_key "tour_activities", "tours"
   add_foreign_key "tours", "tours"

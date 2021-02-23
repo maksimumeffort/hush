@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'bookings/new'
+  get 'bookings/create'
+  get 'tour_activity/edit'
+
   devise_for :users
   root to: 'pages#home'
 

@@ -1,6 +1,12 @@
 class Tour < ApplicationRecord
-    has_many :tours, :tour_activities, :bookings
+
+    has_many :tours
+    has_many :tour_activities
+    has_many :bookings
+    belongs_to :tour, optional: true
+    belongs_to :user
+
     has_many :activities, through: :tour_activities
-    belongs_to :tour
+
     validates :name, :description, presence: true
 end
