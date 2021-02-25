@@ -8,9 +8,9 @@
 
 
 puts "removing all fun"
-Location.destroy_all
-Activity.destroy_all
 TourActivity.destroy_all
+Activity.destroy_all
+Location.destroy_all
 Booking.destroy_all
 Tour.destroy_all
 User.destroy_all
@@ -21,7 +21,7 @@ user1 = User.create!(
   password: 123456,
   # name: Faker::Name.name,
   bio: Faker::Quote.jack_handey,
-  username: Faker::Game.title
+  username: "Test User"
 )
 
 user2 = User.create!(

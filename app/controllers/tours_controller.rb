@@ -11,10 +11,10 @@ class ToursController < ApplicationController
   end
 
   def create
-      @tour = Tour.new(tour_params)
-      @tour.user_id = current_user.id
-      @tour.save
-      redirect_to tour_path(@tour)
+    @tour = Tour.new(tour_params)
+    @tour.user_id = current_user.id
+    @tour.save
+    redirect_to tour_path(@tour)
   end
     
   def show
