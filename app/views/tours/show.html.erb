@@ -2,11 +2,16 @@
   <%= @tour.name %>
 </h1>
 
-<h3> <%= @tour.description %>
+<h3> Description: <%= @tour.description %>
+<h3> Public: <%= @tour.public %>
+
 
 <li>
   <%=  link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %>
 </li>
 <li>
   <%=  link_to "Edit", edit_tour_path(@tour) %>
+</li>
+<li>
+  <%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
 </li>
