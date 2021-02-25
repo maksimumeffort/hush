@@ -11,7 +11,6 @@ puts "removing all fun"
 TourActivity.destroy_all
 Activity.destroy_all
 Location.destroy_all
-Booking.destroy_all
 Tour.destroy_all
 User.destroy_all
 puts "fun successfully removed "
@@ -100,7 +99,7 @@ end
     )
 
   # puts "creating 1 tour activity"
-
+ 
   TourActivity.create!(
     tour: Tour.last,
     activity: Activity.last,
@@ -113,15 +112,11 @@ end
 puts "created #{User.count} users, #{Tour.count} tours, #{Activity.count} activities, #{TourActivity.count} tour activities."
 end
 
-10.times do
-  Booking.create!(
-    tour: Tour.all.sample,
-    user: User.all.sample,
-    date: Date.today
-    )
 
+  Tour.all.each  do |tour|
+    tour.clone
 end
-
+puts "created #{User.count} users, #{Tour.count} duplicated_tours, #{Activity.count} activities, #{TourActivity.count} tour activities."
 
 puts "done creating all fun stuff "
 

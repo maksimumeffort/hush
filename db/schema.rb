@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_083557) do
+ActiveRecord::Schema.define(version: 2021_02_25_092215) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,18 +29,6 @@ ActiveRecord::Schema.define(version: 2021_02_25_083557) do
     t.bigint "user_id", null: false
     t.index ["location_id"], name: "index_activities_on_location_id"
     t.index ["user_id"], name: "index_activities_on_user_id"
-  end
-
-  create_table "bookings", force: :cascade do |t|
-    t.string "date"
-    t.string "start_time"
-    t.string "finish_time"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id", null: false
-    t.bigint "tour_id", null: false
-    t.index ["tour_id"], name: "index_bookings_on_tour_id"
-    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -95,8 +84,6 @@ ActiveRecord::Schema.define(version: 2021_02_25_083557) do
 
   add_foreign_key "activities", "locations"
   add_foreign_key "activities", "users"
-  add_foreign_key "bookings", "tours"
-  add_foreign_key "bookings", "users"
   add_foreign_key "locations", "users"
   add_foreign_key "tour_activities", "activities"
   add_foreign_key "tour_activities", "tours"
