@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :tours
+  resources :tours do
+    member do
+      patch :publish
+    end
+  end
   resources :activities, only: [:new, :create, :edit]
   resources :locations, only: [:new, :create, :edit, :update, :show]
 
