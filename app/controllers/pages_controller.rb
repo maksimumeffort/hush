@@ -4,4 +4,9 @@ class PagesController < ApplicationController
     def home
         @tours = Tour.all
     end
+
+    def dashboard
+    
+        @my_tours = current_user.tours
+      end
 end
