@@ -99,7 +99,7 @@ end
     )
 
   # puts "creating 1 tour activity"
- 
+
   TourActivity.create!(
     tour: Tour.last,
     activity: Activity.last,
