@@ -1,7 +1,7 @@
 class Tour < ApplicationRecord
 
-    has_many :tours, dependent: :destroy
-    has_many :tour_activities
+    has_many :tours
+    has_many :tour_activities, dependent: :destroy
     belongs_to :tour, optional: true
     belongs_to :user
 
