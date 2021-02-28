@@ -12,13 +12,12 @@ Rails.application.routes.draw do
   end
 
   resources :tours do
-    resources :activities do
+    resources :activities, only: [ :new, :create, :edit, :update ] do
     end
   end
 
+  resources :tour_activities, only: [ :new, :create, :edit, :update ]
 
-
-  resources :activities, only: [:new, :create, :edit]
   resources :locations, only: [:new, :create, :edit, :update, :show]
 
   get '/dashboard', to: 'pages#dashboard'
