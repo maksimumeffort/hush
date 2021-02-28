@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
   get 'tour_activity/edit'
 
   devise_for :users
@@ -10,6 +10,14 @@ Rails.application.routes.draw do
       patch :publish
     end
   end
+
+  resources :tours do
+    resources :activities do
+    end
+  end
+
+
+
   resources :activities, only: [:new, :create, :edit]
   resources :locations, only: [:new, :create, :edit, :update, :show]
 
@@ -19,4 +27,3 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
 
- 
