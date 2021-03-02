@@ -4,12 +4,18 @@ class ToursController < ApplicationController
 
   def index
     @tours = Tour.all
-
-    @markers = @flats.geocoded.map do |flat|
-      {
-        lat: flat.latitude,
-        lng: flat.longitude
-      }
+    @activities = []
+    @tours.each_with_index do |tour, i|
+      if i < 10
+      @locations << tour.tour_activities.first.activity
+      end
+    end
+    # @locations.geocoded.map do |t|
+    #     {
+    #       lat: t.latitude,
+    #       lng: t.longitude
+    #     }
+    #   end
   end
 
   def new
