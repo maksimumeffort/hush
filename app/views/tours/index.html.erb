@@ -2,6 +2,6 @@
 
 <ul>
   <% @tours.each do |tour| %>
-    <li> <%=  link_to tour.name, publish_tour_path(tour)%> </li>
+    <li> <%=  link_to tour.name, tour_path(tour)%> </li>
   <% end %>
 </ul>

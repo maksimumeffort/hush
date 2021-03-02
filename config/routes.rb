@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  # get 'tour_activity/edit'
-
   devise_for :users
   root to: 'pages#home'
 
@@ -9,14 +7,10 @@ Rails.application.routes.draw do
     member do
       patch :publish
     end
+    resources :activities, only: [ :new, :create, :edit, :update ] 
   end
 
-  resources :tours do
-    resources :activities, only: [ :new, :create, :edit, :update ] do
-    end
-  end
-
-  resources :tour_activities, only: [ :new, :create, :edit, :update ]
+  resources :tour_activities, only: [ :new, :create, :edit, :update, :show ]
 
   resources :locations, only: [:new, :create, :edit, :update, :show]
 

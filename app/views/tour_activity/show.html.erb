@@ -15,9 +15,3 @@
 <li>
   <%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: "patch" %>
 </li>
-
-<ol>
-<% @tour_activities.each do |tour_activity| %>
-<li> <%= link_to tour_activity.id, tour_activity_path(tour_activity.id) %> </li>
-<% end %>
-</ol>
