@@ -4,7 +4,7 @@
 
 <h3> Description: <%= @tour.description %>
 <h3> Public: <%= @tour.public %>
-
+<%# @tour.activities %>
 
 <li>
   <%=  link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %>
@@ -15,3 +15,13 @@
 <li>
   <%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
 </li>
+
+<%= simple_form_for [@tour, @activity] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :requirements %>
+  <%= f.input :duration %>
+  <%= f.association :location %>
+  <%= f.submit %>
+
+<% end %>

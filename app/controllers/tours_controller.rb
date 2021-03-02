@@ -24,6 +24,7 @@ class ToursController < ApplicationController
   
     
   def show
+    @activity = Activity.new
   end
 
   def edit
