@@ -15,3 +15,20 @@
 <li>
   <%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
 </li>
+<ol>
+<% @tour_activities.each do |tour_activity| %>
+  <% step_text = @tour_activities.find_index(tour_activity) + 1 %>
+
+  <button type="button" class="btn btn-primary" onclick="toggleTourVisibility()">Step <%= step_text %></button>
+  <div class="card bg-light" id="myDIV">
+      Step <%= step_text %>
+      <h5 class="card-title"><%= tour_activity.activity.name %></h5>
+
+      <p class="card-text"><%= tour_activity.activity.location.address %></p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    
+  </div>
+
+
+<% end %>
+</ol>

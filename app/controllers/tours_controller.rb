@@ -19,11 +19,11 @@ class ToursController < ApplicationController
 
   def clone
     @tour.clone
-    
   end
   
     
   def show
+    @tour_activities = @tour.tour_activities
   end
 
   def edit
