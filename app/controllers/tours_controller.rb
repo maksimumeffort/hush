@@ -4,8 +4,14 @@ class ToursController < ApplicationController
 
   def index
     @tours = Tour.all
+
+    @markers = @flats.geocoded.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
   end
-    
+
   def new
       @tour = Tour.new
   end
@@ -19,10 +25,10 @@ class ToursController < ApplicationController
 
   def clone
     @tour.clone
-    
+
   end
-  
-    
+
+
   def show
   end
 
