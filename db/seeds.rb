@@ -47,13 +47,12 @@ puts "done creating all users "
 20.times do
 
   time = Time.now - (1..5).to_a.sample
-
   Location.create!(
     # user: user1.id,
     user: User.all.sample,
-    latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
-    longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
-    address: Faker::Address.full_address,
+    #latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
+    #longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
+    address:  "#{(1..100).to_a.sample} Collins Street, Melbourne",
     opening_time: time,
     closing_time: time + (1..5).to_a.sample)
 end
@@ -62,9 +61,9 @@ end
   Location.create!(
     # user: user2.id,
     user: User.all.sample,
-    latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
-    longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
-    address: Faker::Address.full_address)
+    #latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
+    #longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
+    address: "#{(1..100).to_a.sample} Elizabeth Street, Melbourne")
 end
 
 10.times do
