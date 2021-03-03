@@ -10,14 +10,19 @@ require("channels")
 
 console.log("Hello from app/javascript/packs/application.js!");
 
-def toggleTourVisibility() 
-    var x = document.getElementById("myDIV");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-end
+// const button = document.getElementById("toggle");
+// button.addEventListener("click", (event) => {
+//     console.log(event.)
+//     var x = document.getElementById("myDIV");
+//     if (x.style.display === "none") {
+//       x.style.display = "block";
+//     } else {
+//       x.style.display = "none";
+//     }
+// });
+
+import { toggleTourVisibility } from '../components/tours';
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
