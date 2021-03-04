@@ -1,27 +1,11 @@
-<h1>
-  <%= @tour.name %>
-</h1>
-
-<h3> Description: <%= @tour.description %>
-<h3> Public: <%= @tour.public %>
-
-
-<li>
-  <%=  link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %>
-</li>
-<li>
-  <%=  link_to "Edit", edit_tour_path(@tour) %>
-</li>
-<li>
-  <%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
-</li>
-<div class="container">
+<div class="d-flex flex-column">
   
   <% @tour_activities.each do |tour_activity| %>
-    <div class="row">
-      <% step = @tour_activities.find_index(tour_activity) + 1; step_text = "Step #{step}" %>
-
-      <button type="button" id="toggle" class="btn btn-primary" onclick="toggleContent(this)"><%= step_text %></button>
+    <% step = @tour_activities.find_index(tour_activity) + 1; step_text = "Step #{step}" %>
+    <div class="row p-1">
+      <div> <button type="button" id="toggle" class="btn btn-primary" onclick="toggleContent(this)"><%= step_text %></button> </div>
+    </div>
+    <div class="row p-1">
       <div class="card bg-light" id="<%= step_text %>" style="display: none">
         <%= step_text %>
         <h5 class="card-title"><%= tour_activity.activity.name %></h5>
@@ -34,6 +18,18 @@
   <% end %>
   
 </div>
+<div class="card bg-light" id="title-card">
+  <h1> <%= @tour.name %> </h1>
+
+  <h3> Description: <%= @tour.description %>
+  <h3> Public: <%= @tour.public %>
+</div>
+
+<%=  link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %> 
+<%=  link_to "Edit", edit_tour_path(@tour) %>
+<%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
+<%=  link_to "Select", publish_tour_path(@tour), class: "a-primary", method: :patch%>
+
 <script type="text/javascript">
   var toggleContent = function(obj)
   {
