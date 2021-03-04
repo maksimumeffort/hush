@@ -1,12 +1,15 @@
 @import "home";
+body {
+  margin: 0 auto;
+}
 
 .container-inline {
   display: inline-flex;
   position:fixed;
   bottom: 0px;
-  margin:5px;
+
 }
-.card{
+.card-tours{
   width:100vw;
   height:120px
 }
