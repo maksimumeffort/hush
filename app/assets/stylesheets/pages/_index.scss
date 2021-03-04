@@ -1,1 +1,16 @@
 @import "home";
+
+.container-inline {
+  display: inline-flex;
+  position:fixed;
+  bottom: 0px;
+  margin:5px;
+}
+.card{
+  width:100vw;
+  height:120px
+}
+.overflow-scroll{
+  overflow:scroll;
+
+}
