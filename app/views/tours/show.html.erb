@@ -38,7 +38,7 @@
 <%=  link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %> 
 <%=  link_to "Edit", edit_tour_path(@tour) %>
 <%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
-<%=  link_to "Select", publish_tour_path(@tour), class: "a-primary", method: :patch%>
+<%=  link_to "Select", clone_tour_path(@tour), class: "a-primary", method: :patch%>
 
 
 <script type="text/javascript">
