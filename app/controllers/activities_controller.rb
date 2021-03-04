@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :find_activity, only: [:edit, :show, :update, :destroy]
-  before_destroy :check_for_tour_activitites
+  # before_destroy :check_for_tour_activitites
 
   def new
     @activity = Activity.new
@@ -8,8 +8,20 @@ class ActivitiesController < ApplicationController
 
   def create
     @activity = Activity.new(activity_params)
+    @activity.user = current_user
     @activity.save
-    # redirect_to tour_path(@activity.tour_activity.tour)
+    @tour = Tour.find(params[:tour_id])
+    create_tour_activity(@tour.id, @activity.id)
+    redirect_to tour_path(@tour)
+
+    # inside /tours/:id
+    # take params - send tour_id to TourActivity + Activity_id to TourActivity
+
+  end
+
+  def create_tour_activity(tour_id, activity_id)
+    tour_activity = TourActivity.new(tour_id: tour_id, activity_id: activity_id)
+    tour_activity.save
   end
 
   def edit
@@ -25,8 +37,8 @@ class ActivitiesController < ApplicationController
     redirect_to tour_path(@activity.tour_activity.tour)
   end
 
-  private 
-  
+  private
+
   def find_activity
     @activity = Activity.find(params[:id])
   end
@@ -37,8 +49,8 @@ class ActivitiesController < ApplicationController
       return false
     end
   end
-  
+
   def activity_params
-    params.require(:activity).permit(:name, :duration, :description, :requirements)
+    params.require(:activity).permit(:name, :duration, :description, :requirements, :location_id)
   end
 end

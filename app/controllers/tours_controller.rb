@@ -30,12 +30,27 @@ class ToursController < ApplicationController
   end
 
   def clone
-    @tour.clone
-
+    new_tour = @tour.dup
+    new_tour.user = current_user
+    new_tour.tour = @tour
+    new_tour.public = false
+    new_tour.save
+    clone_tour_activities(@tour.tour_activities, new_tour)
+    redirect_to tour_path(new_tour)
   end
 
-
+  def clone_tour_activities(tour_activities, new_tour)
+    tour_activities.each do |ta|
+      ta_clone = ta.dup
+      ta_clone.tour_id = new_tour.id
+      ta_clone.save
+    end
+  end
+  
   def show
+    @activity = Activity.new
+    @tour_activities = @tour.tour_activities
+
   end
 
   def edit
@@ -52,8 +67,10 @@ class ToursController < ApplicationController
   end
 
   def publish
-    @tour.public = true
-    @tour.save
+    if @tour.tour == nil
+      @tour.public = true
+      @tour.save
+    end
     redirect_to tour_path(@tour)
   end
 
