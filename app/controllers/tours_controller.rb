@@ -1,6 +1,6 @@
 class ToursController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_tour, only: [:edit, :show, :update, :destroy]
+  before_action :find_tour, only: [:clone, :edit, :show, :update, :destroy, :publish]
 
   def index
     @tours = Tour.all
@@ -16,8 +16,14 @@ class ToursController < ApplicationController
     @tour.save
     redirect_to tour_path(@tour)
   end
+
+  def clone
+    @tour.clone
+  end
+  
     
   def show
+    @tour_activities = @tour.tour_activities
   end
 
   def edit
@@ -31,6 +37,12 @@ class ToursController < ApplicationController
   def destroy
     @tour.destroy
     redirect_to tours_path
+  end
+
+  def publish
+    @tour.public = true
+    @tour.save
+    redirect_to tour_path(@tour)
   end
 
   private

@@ -1,13 +1,26 @@
 Rails.application.routes.draw do
-  get 'bookings/new'
-  get 'bookings/create'
-  get 'tour_activity/edit'
 
   devise_for :users
   root to: 'pages#home'
 
-  resources :tours
-  resources :activities, only: [:new, :create, :edit]
+  resources :tours do
+    member do
+      patch :publish
+    end
+  end
+
+  resources :tours do
+    resources :activities, only: [ :new, :create, :edit, :update ] do
+    end
+  end
+
+  resources :tour_activities, only: [ :new, :create, :edit, :update ]
+
   resources :locations, only: [:new, :create, :edit, :update, :show]
+
+  get '/dashboard', to: 'pages#dashboard'
+
+  # resources :users, only: [:index, :show, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
+

@@ -1,12 +1,46 @@
-<h1>
-  <%= @tour.name %>
-</h1>
+<div class="d-flex flex-column">
+  
+  <% @tour_activities.each do |tour_activity| %>
+    <% step = @tour_activities.find_index(tour_activity) + 1; step_text = "Step #{step}" %>
+    <div class="row p-1">
+      <div> <button type="button" id="toggle" class="btn btn-primary" onclick="toggleContent(this)"><%= step_text %></button> </div>
+    </div>
+    <div class="row p-1" id="<%= step_text %>" style="display: none">
+      <span class="column bg-light" >
+        <%= step_text %>
+        <h5 class="card-title"><%= tour_activity.activity.name %></h5>
 
-<h3> <%= @tour.description %>
+        <p class="card-text"><%= tour_activity.activity.location.address %> </p>
+      </span>
+      <span class="column">
+        <a href="#" class="btn btn-primary">Done</a>
+      </span>
+    </div>
+  <% end %>
+  
+</div>
+<div class="card bg-light" id="title-card">
+  <h1> <%= @tour.name %> </h1>
 
-<li>
-  <%=  link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %>
-</li>
-<li>
-  <%=  link_to "Edit", edit_tour_path(@tour) %>
-</li>
+  <h3> Description: <%= @tour.description %>
+  <h3> Public: <%= @tour.public %>
+</div>
+
+<%=  link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %> 
+<%=  link_to "Edit", edit_tour_path(@tour) %>
+<%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
+<%=  link_to "Select", publish_tour_path(@tour), class: "a-primary", method: :patch%>
+
+
+<script type="text/javascript">
+  var toggleContent = function(obj)
+  {
+      var x = document.getElementById(obj.innerHTML);
+      if (x.style.display === "none") {
+       x.style.display = "block";
+     } else {
+      x.style.display = "none";
+    }
+  }
+
+</script>
