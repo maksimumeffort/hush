@@ -4,6 +4,18 @@ class ToursController < ApplicationController
 
   def index
     @tours = Tour.all
+    @locations = []
+    @tours.each_with_index do |tour, i|
+      if i < 10
+      @locations << tour.tour_activities.first.activity.location
+      end
+    end
+    @markers = @locations.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def new
@@ -34,7 +46,7 @@ class ToursController < ApplicationController
       ta_clone.save
     end
   end
-
+  
   def show
     @activity = Activity.new
     @tour_activities = @tour.tour_activities
