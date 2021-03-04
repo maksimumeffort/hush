@@ -10,6 +10,22 @@ require("channels")
 
 import { initMapbox } from '../plugins/init_mapbox';
 
+
+console.log("Hello from app/javascript/packs/application.js!");
+
+// const button = document.getElementById("toggle");
+// button.addEventListener("click", (event) => {
+//     console.log(event.)
+//     var x = document.getElementById("myDIV");
+//     if (x.style.display === "none") {
+//       x.style.display = "block";
+//     } else {
+//       x.style.display = "none";
+//     }
+// });
+
+import { toggleTourVisibility } from '../components/tours';
+
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
 })
