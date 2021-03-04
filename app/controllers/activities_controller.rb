@@ -11,17 +11,17 @@ class ActivitiesController < ApplicationController
     @activity.user = current_user
     @activity.save
     @tour = Tour.find(params[:tour_id])
-    create_tour_activity(@tour, @activity)
+    create_tour_activity(@tour.id, @activity.id)
     redirect_to tour_path(@tour)
-    
+
     # inside /tours/:id
     # take params - send tour_id to TourActivity + Activity_id to TourActivity
-  
+
   end
 
-  def create_tour_activity(tour, activity)
-    TourActivity.create(tour, activity)
-   
+  def create_tour_activity(tour_id, activity_id)
+    tour_activity = TourActivity.new(tour_id: tour_id, activity_id: activity_id)
+    tour_activity.save
   end
 
   def edit
@@ -37,8 +37,8 @@ class ActivitiesController < ApplicationController
     redirect_to tour_path(@activity.tour_activity.tour)
   end
 
-  private 
-  
+  private
+
   def find_activity
     @activity = Activity.find(params[:id])
   end
@@ -49,7 +49,7 @@ class ActivitiesController < ApplicationController
       return false
     end
   end
-  
+
   def activity_params
     params.require(:activity).permit(:name, :duration, :description, :requirements, :location_id)
   end

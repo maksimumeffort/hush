@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :tours do
     member do
       patch :publish
+      patch :clone
     end
   end
 

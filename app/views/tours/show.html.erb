@@ -15,6 +15,9 @@
 <li>
   <%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
 </li>
+<li>
+  <%=  link_to "Clone_Tour", clone_tour_path(@tour), class: "a-primary", method: :patch%>
+</li>
 
 <%= simple_form_for [@tour, @activity] do |f| %>
   <%= f.input :name %>
