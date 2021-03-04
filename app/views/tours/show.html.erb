@@ -10,6 +10,15 @@
         <%= step_text %>
         <h5 class="card-title"><%= tour_activity.activity.name %></h5>
 
+<!-- <%= simple_form_for [@tour, @activity] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :requirements %>
+  <%= f.input :duration %>
+  <%= f.association :location %>
+  <%= f.submit %>
+
+<% end %> -->
         <p class="card-text"><%= tour_activity.activity.location.address %> </p>
       </span>
       <span class="column">
