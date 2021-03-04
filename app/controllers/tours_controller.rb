@@ -33,11 +33,12 @@ class ToursController < ApplicationController
       ta_clone.tour_id = new_tour.id
       ta_clone.save
     end
-
   end
 
   def show
     @activity = Activity.new
+    @tour_activities = @tour.tour_activities
+
   end
 
   def edit

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  # get 'tour_activity/edit'
-
   devise_for :users
   root to: 'pages#home'
 
