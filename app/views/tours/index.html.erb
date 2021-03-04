@@ -10,7 +10,7 @@
   <div class='d-flex overflow-scroll'>
   <% @tours.each do |tour| %>
     <div class="card-tours">
-      <%=  link_to tour.name, tour_path(tour)%>
+      <%=  link_to tour.name, tour_path(tour)%><br>
       <%= tour.description %>
   </div>
   <% end %>
