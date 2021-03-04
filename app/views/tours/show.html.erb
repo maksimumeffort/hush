@@ -5,15 +5,16 @@
     <div class="row p-1">
       <div> <button type="button" id="toggle" class="btn btn-primary" onclick="toggleContent(this)"><%= step_text %></button> </div>
     </div>
-    <div class="row p-1">
-      <div class="card bg-light" id="<%= step_text %>" style="display: none">
+    <div class="row p-1" id="<%= step_text %>" style="display: none">
+      <span class="column bg-light" >
         <%= step_text %>
         <h5 class="card-title"><%= tour_activity.activity.name %></h5>
 
-        <p class="card-text"><%= tour_activity.activity.location.address %></p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-        
-      </div>
+        <p class="card-text"><%= tour_activity.activity.location.address %> </p>
+      </span>
+      <span class="column">
+        <a href="#" class="btn btn-primary">Done</a>
+      </span>
     </div>
   <% end %>
   
@@ -29,6 +30,7 @@
 <%=  link_to "Edit", edit_tour_path(@tour) %>
 <%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
 <%=  link_to "Select", publish_tour_path(@tour), class: "a-primary", method: :patch%>
+
 
 <script type="text/javascript">
   var toggleContent = function(obj)
