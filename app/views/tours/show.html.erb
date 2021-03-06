@@ -1,12 +1,8 @@
-<%# <div class="container-inline"> %>  
-<%# <div id="map"
+<div id="map"
      style="width: 100%; height: 100vh;"
-     data-markers="<%= @markers.to_json %>
-     <%# data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>
-<%# </div> %>
-
-
-
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
 
   <div class="d-flex flex-column">
     <!-- Button trigger modal -->
@@ -41,19 +37,21 @@
     </div>
   </div>
 </div>
+</div>
 
-  <div>
+<div class="container-inline step-container">
+  <div class="d-flex flex-column">
     <% @tour_activities.each do |tour_activity| %>
       <% step = @tour_activities.find_index(tour_activity) + 1; step_text = "Step #{step}" %>
-      <div class="row p-1">
-         <button type="button" id="toggle" class="btn btn-primary" onclick="toggleContent(this)"><%= step_text %></button>
+
+      <div class="row p-1 step-button">
+        <div style="margin-bottom: 4px;"> <button type="button" id="toggle" class="btn btn-primary" onclick="toggleContent(this)"><%= step_text %></button> </div>
       </div>
       <div class="row p-1" id="<%= step_text %>" style="display: none">
         <span class="column bg-light" >
           <%= step_text %>
-          <h5 class="card-title"><%= tour_activity.activity.name %></h5>
-
-        <p class="card-text"><%= tour_activity.activity.location.address %> </p>
+          <h5 class="card-title"><%= tour_activity.activity.name %></h5>  
+          <p class="card-text"><%= tour_activity.activity.location.address %> </p>
         </span>
         <span class="column">
           <a href="#" class="btn btn-primary">Done</a>
@@ -62,21 +60,24 @@
     <% end %>
   </div>
 
-  <div class="card bg-light" id="title-card">
-    <div> <%= @tour.name %></div>
-    <br>
-    <div> Description: <%= @tour.description %> </div>
-    <div> Public: <%= @tour.public %> </div>
+</div>
+
+<div class="card-tours-show" id="title-card">
+  <div class="row"> 
+    <div class ="col-8"> <%= @tour.name %> </div>
+    <div class ="col" style="text-align: end;"> <%=  button_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %> </div>
   </div>
-
-  <div>
-    <%=  link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %> 
-    <%=  link_to "Edit", edit_tour_path(@tour) %>
-    <%=  link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch%>
-    <%=  link_to "Select", clone_tour_path(@tour), class: "a-primary", method: :patch%>
+  <div class="row"> 
+    <div class ="col"> Description: <%= @tour.description %> </div>
   </div>
+  <div class="row">
+    <div class ="col"> Public: <%= @tour.public %> </div>
+  </div>
+</div>
 
 
+</div>
+                     
 <script type="text/javascript">
   var toggleContent = function(obj)
   {
@@ -89,3 +90,14 @@
   }
 
 </script>
+
+<!-- <%= simple_form_for [@tour, @activity] do |f| %>
+    
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.input :requirements %>
+        <%= f.input :duration %>
+        <%= f.association :location %>
+        <%= f.submit %>
+
+      <% end %> -->
