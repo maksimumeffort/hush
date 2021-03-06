@@ -6,15 +6,17 @@
 
 </div>
 
-<div class="container-inline">
+
+
+<!-- <div class="container-inline"> -->
   <div class='d-flex overflow-scroll'>
   <% @tours.each do |tour| %>
     <div class="card-tours">
-      <%=  link_to tour.name, tour_path(tour)%><br>
+      <%= link_to tour.name, tour_path(tour)%><br>
       <%= tour.description %>
   </div>
   <% end %>
   </div>
-</div>
+<!-- </div> -->
 
 

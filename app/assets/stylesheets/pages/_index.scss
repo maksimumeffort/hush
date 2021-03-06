@@ -1,14 +1,15 @@
 @import "home";
 
 
-.container-inline {
-  display: inline-flex;
-  position:fixed;
-  bottom: 5px;
-  margin-left: 10px;
+// .container-inline {
+//   display: inline-flex;
+//   position:fixed;
+//   bottom: 5px;
+//   margin-left: 10px;
 
-}
+// }
 .card-tours{
+  flex: 0 0 auto;
   width:93vw;
   background-color: #D8D8D8;
   margin-right: 25px;
@@ -17,6 +18,7 @@
   padding:5px;
 }
 .overflow-scroll{
-  overflow:scroll;
-
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
