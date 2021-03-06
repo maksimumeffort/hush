@@ -7,10 +7,10 @@
 </div>
 
 
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<div id="carouselExampleControls" class="carousel slide" data-interval="false">
   <div class="carousel-inner">
     <% @tours.each_with_index do |tour, i| %>
-        <div class="carousel-item <%= @tours[0] ? "active" : "" %>">
+        <div class="carousel-item <%= i == 0 ? "active" : "" %>" data-center="<%= {lat: tour.activities.first.location.latitude, lng: tour.activities.first.location.longitude}.to_json%>">
           <div class=" card-tours d-block mx-auto">
             <%= link_to tour.name, tour_path(tour)%><br>
             <%= tour.description %>
@@ -28,3 +28,7 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+<script type="text/javascript">
+
+</script>
