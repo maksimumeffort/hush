@@ -50,7 +50,16 @@ class ToursController < ApplicationController
   def show
     @activity = Activity.new
     @tour_activities = @tour.tour_activities
-
+    @locations = []
+    @tour.activities.each do |activity|
+      @locations << activity.location
+    end
+    @markers = @locations.map do |flat|
+      {
+        lat: flat.latitude,
+        lng: flat.longitude
+      }
+    end
   end
 
   def edit
