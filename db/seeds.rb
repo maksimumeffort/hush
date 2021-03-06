@@ -47,23 +47,34 @@ puts "done creating all users "
 20.times do
 
   time = Time.now - (1..5).to_a.sample
+  latitude = Faker::Number.between(from: -37.6, to: -37.8).round(4)
+  longitude = Faker::Number.between(from: 144.5, to: 145.5).round(4)
+  results = Geocoder.search([latitude, longitude])
+  address = results.first.address
+
   Location.create!(
     # user: user1.id,
     user: User.all.sample,
-    #latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
-    #longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
-    address:  "#{(1..100).to_a.sample} Collins Street, Melbourne",
+    latitude: latitude,
+    longitude: longitude,
+    address:  address,
     opening_time: time,
     closing_time: time + (1..5).to_a.sample)
 end
 
 20.times do
+  latitude = Faker::Number.between(from: -37.6, to: -37.8).round(4)
+  longitude = Faker::Number.between(from: 144.5, to: 145.5).round(4)
+  results = Geocoder.search([latitude, longitude])
+  address = results.first.address
+
   Location.create!(
     # user: user2.id,
     user: User.all.sample,
-    #latitude: Faker::Number.between(from: 37.0, to: 38.0).round(4),
-    #longitude: Faker::Number.between(from: 144.0, to: 145.0).round(4),
-    address: "#{(1..100).to_a.sample} Elizabeth Street, Melbourne")
+    latitude: latitude,
+    longitude: longitude,
+    address:  address
+  )
 end
 
 10.times do
