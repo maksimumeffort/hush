@@ -1,0 +1,12 @@
+<div class="card-tours-show" id="title-card">
+    <div class="row"> 
+      <div class ="col-8"> <%= @tour.name %> </div>
+      <div class ="col" style="text-align: end;"> <%=  button_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %> </div>
+    </div>
+    <div class="row"> 
+      <div class ="col"> Description: <%= @tour.description %> </div>
+    </div>
+    <div class="row">
+      <div class ="col"> Public: <%= @tour.public %> </div>
+    </div>
+</div>

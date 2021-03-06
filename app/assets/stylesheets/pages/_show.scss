@@ -1,25 +1,38 @@
 @import "home";
 
-
-.container-inline {
-  display: inline-flex;
-  bottom: 178px;
-  margin-left: 25px;
+#map {
+  padding-left: 10px;
 }
+
+.container-inline-show {
+  display: inline-flex;
+  position: relative;
+  justify-content: space-between;
+  z-index: 100;
+  width: 100%;
+  padding: 5px;
+}
+
+.step-container{
+  display: inline-flex;
+  position: relative;
+  max-width: 69%;
+}
+
 .step-button {
   margin-bottom: 5px;
 }
 .card-tours-show{
-  position:fixed;
+  position: relative;
+  z-index: 100;
   bottom: 12px;
-  margin-left: 13px;
-  width:93vw;
+  width: 100%;
   background-color: #f0e8e8;
   opacity: 90%;
-  margin-right: 25px;
-  height:120px;
+  height: 120px;
   border-radius: 5px;
-  padding:5px;
+  padding: 5px;
+  margin-left: -4px;
 }
 .card-button{
   position: relative; right: -162px;
@@ -27,4 +40,9 @@
 .overflow-scroll{
   overflow:scroll;
 
+}
+
+#activity-button {
+  position:relative;
+  z-index: 100;
 }
