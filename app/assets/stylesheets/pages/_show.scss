@@ -1,0 +1,31 @@
+@import "home";
+
+
+.container-inline {
+  display: inline-flex;
+  position:fixed;
+  bottom: 178px;
+  margin-left: 25px;
+}
+.step-button {
+  margin-bottom: 5px;
+}
+.card-tours-show{
+  position:fixed;
+  bottom: 12px;
+  margin-left: 13px;
+  width:93vw;
+  background-color: #f0e8e8;
+  opacity: 90%;
+  margin-right: 25px;
+  height:120px;
+  border-radius: 5px;
+  padding:5px;
+}
+.card-button{
+  position: relative; right: -162px;
+}
+.overflow-scroll{
+  overflow:scroll;
+
+}
