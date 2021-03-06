@@ -3,6 +3,14 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
+const flyOnMap = (map, card) => {
+  const center = JSON.parse(card.dataset.center)
+  map.flyTo({
+    center: [center.lng, center.lat],
+    zoom: 15
+  });
+}
+
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
@@ -25,10 +33,14 @@ const initMapbox = () => {
     markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
     map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
   };
+  fitMapToMarkers(map, markers);
 
-  if (mapElement) {
-    // [ ... ]
-    fitMapToMarkers(map, markers);
+  const carousel = document.querySelector(".carousel")
+  if (carousel) {
+    $('.carousel').on('slid.bs.carousel', function () {
+      const card = document.querySelector(".carousel-item.active")
+      flyOnMap(map, card)
+    })
   }
   }
 };

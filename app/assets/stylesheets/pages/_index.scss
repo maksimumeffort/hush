@@ -1,22 +1,33 @@
 @import "home";
 
 
-.container-inline {
-  display: inline-flex;
-  bottom: 10px;
-  margin-left: 13px;
-
-}
-.card{
-  width:93vw;
-  background-color: #f0e8e8;
-  opacity: 90%;
+.card-tours{
+  width:82%;
+  background-color: #D8D8D8;
   margin-right: 25px;
   height:120px;
   border-radius: 5px;
   padding:5px;
 }
 .overflow-scroll{
-  overflow:scroll;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
 
+.carousel-inner {
+  height:120px
+}
+
+.carousel {
+  position:sticky;
+  bottom:5px
+}
+.carousel-control-prev{
+  opacity:1;
+  width:10%;
+}
+.carousel-control-next{
+  opacity:1;
+  width:10%;
 }
