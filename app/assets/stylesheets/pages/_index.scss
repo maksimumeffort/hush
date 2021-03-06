@@ -9,8 +9,7 @@
 
 // }
 .card-tours{
-  flex: 0 0 auto;
-  width:93vw;
+  width:82%;
   background-color: #D8D8D8;
   margin-right: 25px;
   height:120px;
@@ -21,4 +20,21 @@
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
+}
+
+.carousel-inner {
+  height:120px
+}
+
+.carousel {
+  position:sticky;
+  bottom:5px
+}
+.carousel-control-prev{
+  opacity:1;
+  width:10%;
+}
+.carousel-control-next{
+  opacity:1;
+  width:10%;
 }
