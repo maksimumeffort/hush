@@ -1,6 +1,6 @@
 class ToursController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_tour, only: [:clone, :edit, :show, :update, :destroy, :publish]
+  before_action :find_tour, only: [:clone, :edit, :show, :update, :destroy, :publish, :start]
 
   def index
     @tours = Tour.all
@@ -29,6 +29,13 @@ class ToursController < ApplicationController
     redirect_to tour_path(@tour)
   end
 
+  def start
+    tour_activity = @tour.tour_activities.first
+    tour_activity.start_time = DateTime.now
+    tour_activity.save
+    redirect_to tour_path(@tour)
+  end
+
   def clone
     new_tour = @tour.dup
     new_tour.user = current_user
@@ -49,7 +56,7 @@ class ToursController < ApplicationController
   
   def show
     @activity = Activity.new
-    @tour_activities = @tour.tour_activities
+    @tour_activities = @tour.tour_activities.sort_by(&:id)
     @locations = []
     @tour.activities.each do |activity|
       @locations << activity.location

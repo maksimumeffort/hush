@@ -8,9 +8,10 @@
         </div>
         <div class="row p-1" id="<%= step_text %>" style="display: none">
             <span class="column bg-light" >
-            <%= step_text %>
-            <h5 class="card-title"><%= tour_activity.activity.name %></h5>  
-            <p class="card-text"><%= tour_activity.activity.location.address %> </p>
+                <%= step_text %>
+                <h5 class="card-title"><%= tour_activity.activity.name %></h5>  
+                <p class="card-text"><%= tour_activity.activity.location.address %> </p>
+                <p class="card-text">Start Time: <%= tour_activity.start_time != nil ? tour_activity.start_time  : '' %> </p>
             </span>
             <span class="column">
             <a href="#" class="btn btn-primary">Done</a>
