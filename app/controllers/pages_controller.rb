@@ -6,7 +6,9 @@ class PagesController < ApplicationController
     end
 
     def dashboard
-    
-        @my_tours = current_user.tours
-      end
+    @my_bookings = current_user.tours.where(public: false).where.not(tour_id: nil)
+
+    @my_tour_designs = current_user.tours.where(tour_id: nil)
+    end
+
 end
