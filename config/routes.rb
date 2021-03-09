@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     member do
       patch :publish
       patch :clone
+      patch :start
     end
   end
 
