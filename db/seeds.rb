@@ -86,12 +86,13 @@ end
     user: user,
     name: Faker::Coffee.blend_name,
     description: Faker::Coffee.notes,
-    completed: false
+    completed: false,
+    public: true
     )
 
 # puts "created 1 user and 1 tour"
 
-  10.times do
+  5.times do
 
 # puts "creating 1 activity"
 
