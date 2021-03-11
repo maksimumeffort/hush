@@ -14,7 +14,7 @@
                 <p class="card-text">Start Time: <%= tour_activity.start_time != nil ? tour_activity.start_time  : '' %> </p>
             </span>
             <span class="column">
-            <a href="#" class="btn btn-primary">Done</a>
+                <%= button_to "Done", finish_tour_activity_path(tour_activity), class: "a-primary", method: :patch %>
             </span>
         </div>
         <% end %>
