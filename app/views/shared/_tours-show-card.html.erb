@@ -1,22 +1,22 @@
 <div class="card-tours-show" id="title-card">
-    <div class="row"> 
-      <div class ="col-8"> <%= @tour.name %> </div>
+    <div class="row">
+     <div class ="col-8"> <h5><%= @tour.name %> </h5></div>
       <% if @tour.public == false && @tour.tour == nil %>
-        <div class ="col-4" style="text-align: end;"> 
-          <%= button_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %>
-          <%= button_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch %> 
+        <div class ="col-4" style="text-align: center;">
+          <div id="button"><%= link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %></div>
+          <div id="button"><%= link_to "Publish", publish_tour_path(@tour), class: "a-primary", method: :patch %></div>
         </div>
       <% elsif @tour.public == true && @tour.tour == nil %>
-        <div class ="col-4" style="text-align: end;"> 
-          <%= button_to "Select", clone_tour_path(@tour), class: "a-primary", method: :patch %>
+        <div class ="col-4" style="text-align: center;">
+          <div id="button"> <%= link_to "Select", clone_tour_path(@tour), class: "a-primary", method: :patch %></div>
         </div>
       <% elsif @tour.tour != nil && @tour.tour_activities.first.start_time == nil%>
-        <div class ="col-4" style="text-align: end;"> 
-          <%= button_to "Start", start_tour_path(@tour), class: "a-primary", method: :patch %>
+        <div class ="col-4" style="text-align: center;">
+          <div id="button"><%= link_to "Start", start_tour_path(@tour), class: "a-primary", method: :patch %></div>
         </div>
       <% end %>
     </div>
-    <div class="row"> 
+    <div class="row">
       <div class ="col"> Description: <%= @tour.description %> </div>
     </div>
     <div class="row">
