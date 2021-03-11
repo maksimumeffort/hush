@@ -11,10 +11,10 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :tours do
-  #   resources :activities, only: [ :new, :create, :edit, :update ] do
-  #   end
-  # end
+  resources :tours do
+    resources :activities, only: [ :new, :create, :edit, :update ] do
+    end
+  end
 
   resources :tour_activities, only: [ :new, :create, :edit, :update ] do
     member do
