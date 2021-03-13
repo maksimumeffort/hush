@@ -1,8 +1,11 @@
+@import "config/bootstrap_variables";
 @import "bootstrap/scss/bootstrap";
 @import "pages/index";
 @import "components/index";
 @import "components/navbar";
 @import "pages/show";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 
 /*
