@@ -14,7 +14,7 @@
         <div class="carousel-item p-2 <%= i == 0 ? "active" : "" %>" data-center="<%= {lat: tour.activities.first.location.latitude, lng: tour.activities.first.location.longitude}.to_json%>">
           <div class="card card-body px-3">
            <h5> <%= link_to tour.name, tour_path(tour), class: "text-dark" %> </h5>
-           <p class="mb-0" ><%= tour.description %> </p>
+           <p class="mb-0  text-truncate" ><%= tour.description %> </p>
           </div>
         </div>
       <% end %>
