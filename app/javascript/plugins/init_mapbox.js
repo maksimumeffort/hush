@@ -11,14 +11,37 @@ const flyOnMap = (map, card) => {
   });
 }
 
-const initMapbox = () => {
+function getLocation() {
+  const map = document.getElementById('map');
+  if (map) {
+    navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {enableHighAccuracy: true});
+  }
+  }
+
+  function successLocation(position) {
+    const crd = position.coords;
+    let lat = crd.latitude;
+    let long = crd.longitude;
+    let coords = {lat: lat, long: long};
+    initMapbox(coords);
+  }
+
+  function errorLocation(){
+    console.log("error")
+  }
+
+const initMapbox = (coords) => {
+
   const mapElement = document.getElementById('map');
 
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+    console.log(coords)
     const map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v10'
+      style: 'mapbox://styles/mapbox/streets-v10',
+      center: [coords.long,coords.lat],
+      zoom: 14,
     });
 
     const markers = JSON.parse(mapElement.dataset.markers);
@@ -33,6 +56,7 @@ const initMapbox = () => {
     markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
     map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
   };
+
   fitMapToMarkers(map, markers);
 
   const carousel = document.querySelector(".carousel")
@@ -43,9 +67,9 @@ const initMapbox = () => {
     })
   }
   }
-};
+  };
 
-export { initMapbox };
+export { initMapbox, getLocation };
 
 
 // import mapboxgl from 'mapbox-gl';
