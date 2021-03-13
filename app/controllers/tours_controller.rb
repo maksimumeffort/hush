@@ -53,7 +53,7 @@ class ToursController < ApplicationController
       ta_clone.save
     end
   end
-  
+
   def show
     @activity = Activity.new
     @tour_activities = @tour.tour_activities.sort_by(&:id)
