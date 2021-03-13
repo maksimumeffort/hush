@@ -4,7 +4,7 @@
         <% step = @tour_activities.find_index(tour_activity) + 1; step_text = "Step #{step}" %>
 
         <div class="row p-1 step-button">
-            <div style="margin-bottom: 4px;"> <button type="button" id="toggle" class="btn btn-primary" onclick="toggleContent(this)"><%= step_text %></button> </div>
+            <div style="margin-bottom: 4px;"> <button type="button" id="toggle" class="step-button <%= tour_activity.finish_time == nil ? 'neutral' : 'positive' %>" onclick="toggleContent(this)"><%= step_text %></button> </div>
         </div>
         <div class="row p-1 step-card" id="<%= step_text %>" style="display: none">
             <span class="column " >
