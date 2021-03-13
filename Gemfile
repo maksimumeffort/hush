@@ -30,6 +30,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'faker'
 
+gem 'font-awesome-sass'
+
 gem 'dotenv-rails', groups: [:development, :test]
 
 group :development, :test do
