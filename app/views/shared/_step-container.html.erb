@@ -6,15 +6,18 @@
         <div class="row p-1 step-button">
             <div style="margin-bottom: 4px;"> <button type="button" id="toggle" class="btn btn-primary" onclick="toggleContent(this)"><%= step_text %></button> </div>
         </div>
-        <div class="row p-1" id="<%= step_text %>" style="display: none">
-            <span class="column bg-light" >
+        <div class="row p-1 step-card" id="<%= step_text %>" style="display: none">
+            <span class="column " >
                 <%= step_text %>
                 <h5 class="card-title"><%= tour_activity.activity.name %></h5>  
                 <p class="card-text"><%= tour_activity.activity.location.address %> </p>
-                <p class="card-text">Start Time: <%= tour_activity.start_time != nil ? tour_activity.start_time  : '' %> </p>
+                <p class="card-text">Start Time: <%= tour_activity.start_time != nil ? tour_activity.start_time.strftime('%a, %d %b %Y %H:%M:%S')  : '' %> </p>
+                <p class="card-text">Finish Time: <%= tour_activity.finish_time != nil ? tour_activity.finish_time.strftime('%a, %d %b %Y %H:%M:%S')  : '' %> </p>
             </span>
             <span class="column">
-                <%= button_to "Done", finish_tour_activity_path(tour_activity), class: "a-primary", method: :patch %>
+                <% if tour_activity.finish_time == nil %>
+                    <%= button_to "Done", finish_tour_activity_path(tour_activity), class: "a-primary", method: :patch %>
+                <% end %>
             </span>
         </div>
         <% end %>

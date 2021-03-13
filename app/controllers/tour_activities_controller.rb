@@ -1,5 +1,5 @@
 class TourActivitiesController < ApplicationController
-  before_action :find_tour_activity only: [:finish]
+  before_action :find_tour_activity, only: [:finish]
   def new
   end
 
@@ -17,6 +17,7 @@ class TourActivitiesController < ApplicationController
     @tour_activity.save
     redirect_to tour_path(@tour_activity.tour)
   end
+
   private
   def find_tour_activity
     @tour_activity = TourActivity.find(params[:id])
