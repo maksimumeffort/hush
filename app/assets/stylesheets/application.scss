@@ -5,7 +5,6 @@
 @import "components/navbar";
 @import "pages/show";
 
-
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -24,4 +23,13 @@
  */
  html,body {
   overflow:hidden;
+ }
+
+ p {
+  font-family:  Helvetica Neue,Arial,Helvetica,sans-serif;
+  font-size: 12px;
+ }
+
+ h5 {
+  font-family: sans-serif;
  }
