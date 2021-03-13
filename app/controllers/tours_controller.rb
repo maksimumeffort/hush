@@ -53,7 +53,7 @@ class ToursController < ApplicationController
       ta_clone.save
     end
   end
-  
+
   def show
     @activity = Activity.new
     @tour_activities = @tour.tour_activities.sort_by(&:id)
@@ -67,6 +67,7 @@ class ToursController < ApplicationController
         lng: flat.longitude
       }
     end
+    # raise
   end
 
   def edit

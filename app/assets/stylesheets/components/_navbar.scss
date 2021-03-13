@@ -2,6 +2,10 @@
   justify-content: space-between;
   background: white;
 }
+.navbar {
+  width:100%;
+
+}
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
@@ -14,5 +18,12 @@
 #search{
   flex-wrap: nowrap;
   width: 100%;
-  
+
+}
+
+.invisible {
+  display:none
+}
+.small {
+  height: 40px;
 }

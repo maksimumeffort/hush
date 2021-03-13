@@ -19,4 +19,8 @@
  *= require bootstrap
  *= require bootstrap_responsive
  *= require my_styles
+
  */
+ html,body {
+  overflow:hidden;
+ }
