@@ -3,12 +3,19 @@ class ToursController < ApplicationController
   before_action :find_tour, only: [:clone, :edit, :show, :update, :destroy, :publish, :start]
 
   def index
-    @tours = Tour.all
+    search = params[:location]
+    @unfiltered_tours = Tour.all.to_a
+    @tours = []
     @locations = []
-    @tours.each_with_index do |tour, i|
-      if i < 10
-      @locations << tour.tour_activities.first.activity.location
-      end
+
+    @unfiltered_tours.each_with_index do |tour, i|
+      #if i < 10
+        location = tour.tour_activities.first.activity.location
+        if search.nil? or location.address.include? "#{search}"
+          @locations << location
+          @tours << tour
+        end
+      #end
     end
     @markers = @locations.map do |flat|
       {
@@ -19,7 +26,7 @@ class ToursController < ApplicationController
   end
 
   def new
-      @tour = Tour.new
+    @tour = Tour.new
   end
 
   def create
