@@ -4,8 +4,8 @@
 @import "components/index";
 @import "components/navbar";
 @import "pages/show";
-@import "font-awesome-sprockets";
-@import "font-awesome";
+// @import "font-awesome-sprockets";
+// @import "font-awesome";
 
 
 /*
@@ -26,4 +26,13 @@
  */
  html,body {
   overflow:hidden;
+ }
+
+ p {
+  font-family:  Helvetica Neue,Arial,Helvetica,sans-serif;
+  font-size: 12px;
+ }
+
+ h5 {
+  font-family: sans-serif;
  }
