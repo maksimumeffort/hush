@@ -23,7 +23,7 @@
           <a class="dropdown-item" href="/dashboard">My Tours</a>
           <a class="dropdown-item" href="tours/new">Create a Tour</a>
           <a class="dropdown-item" href="/dashboard">Edit a Tour</a>
-        <% if action_name == "show" %>
+        <% if action_name != "index" %>
           <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" name="location" aria-label="Search">
             <button class="ml-2 btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -32,7 +32,7 @@
       </ul>
 
     </div>
-        <% if action_name != "show" %>
+        <% if action_name == "index" %>
         <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" name="location" aria-label="Search">
           <button class="ml-2 btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
