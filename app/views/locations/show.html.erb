@@ -3,9 +3,5 @@
 <h3> Opening Time:  <%= @location.opening_time %> </h3>
 <h3> Closing Time:  <%= @location.closing_time %> </h3>
 
-<li>
-  <%=  link_to "Remove", location_path(@location), method: :delete, data: {confirm: "Are you sure?"} %>
-</li>
-<li>
-  <%=  link_to "Edit", edit_location_path(@location) %>
-</li>
+<li> <%= link_to "Remove", location_path(@location), method: :delete, data: {confirm: "Are you sure?"} %> </li>
+<li> <%= link_to "Edit", edit_location_path(@location) %> </li>
