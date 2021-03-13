@@ -67,7 +67,6 @@ class ToursController < ApplicationController
         lng: flat.longitude
       }
     end
-    # raise
   end
 
   def edit
