@@ -24,20 +24,31 @@
           <a class="dropdown-item" href="tours/new">Create a Tour</a>
           <a class="dropdown-item" href="/dashboard">Edit a Tour</a>
         <% if action_name == "show" %>
-          <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="location" aria-label="Search">
-            <button class="ml-2 btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
+          <div class="row">
+            <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" name="location" aria-label="Search">
+              <button class="ml-2 btn btn-secondary my-2 my-sm-0" type="submit"><i class="fas fa-filter"></i></button>
+            </form>
+          </div>
         <% end %>
       </ul>
-
     </div>
+    <!-- search section -->
         <% if action_name != "show" %>
-        <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" name="location" aria-label="Search">
-          <button class="ml-2 btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
+        <div class="row">
+          <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2 col-8" type="search" placeholder="Search" name="location" aria-label="Search">
+
+            <button class="ml-2 btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+          </form>
+          <!-- filter section-->
+
+          <button class="ml-2 btn btn-secondary my-2 my-sm-0 col-2" id="filter"><i class="fas fa-filter"></i></button>
+
+        </div>
         <% end %>
+
+
     </nav>
 
   </div>
