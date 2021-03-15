@@ -27,3 +27,16 @@
 .small {
   height: 40px;
 }
+
+#filters_container{
+  height: 300px;
+  width:300px;
+  position:relative;
+  // y:-300px;
+}
+.active_filt{
+  // y:0px;
+}
+.inactive_filt{
+  // y:-300px;
+}
