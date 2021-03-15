@@ -19,16 +19,40 @@ const initMapbox = () => {
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     const map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/mapbox/streets-v10",
+      style: "mapbox://styles/alemaks1993/ckm7pyk1ma1ap17qs70bur639",
+      options: {controls: {profileSwitcher: false}, profile: "walking"},
+      properties: {
+        'marker-color': '#8FBF5F',
+        'marker-size': 'large',
+        'marker-symbol': 'rocket'},
     });
-    const markers = JSON.parse(mapElement.dataset.markers);
-    markers.forEach((marker) => {
-      new mapboxgl.Marker().setLngLat([marker.lng, marker.lat]).addTo(map);
+    const directions = new MapboxDirections({
+      accessToken: mapElement.dataset.mapboxApiKey,
+      unit: 'metric',
+      profile: 'mapbox/walking',
+      controls: { profileSwitcher: false, instructions: false, inputs: false },
+      style: [{
+        'id': 'directions-waypoint-point-casing',
+        'type': 'circle',
+        'source': 'directions',
+        'paint': {
+        'circle-radius': 8,
+        'circle-color': '#8FBF5F'
+        }
+      }]
     });
-    const fitMapToMarkers = (map, markers) => {
-      const bounds = new mapboxgl.LngLatBounds();
-      markers.forEach((marker) => bounds.extend([marker.lng, marker.lat]));
-      map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+    // directions conditional (only run if page = show)
+      if (window.location.pathname == "show") {
+      map.addControl(directions)};
+      const markers = JSON.parse(mapElement.dataset.markers);
+      markers.forEach((marker) => {
+        new mapboxgl.Marker().setLngLat([marker.lng, marker.lat]).addTo(map);
+      });
+      const fitMapToMarkers = (map, markers) => {
+        const bounds = new mapboxgl.LngLatBounds();
+        markers.forEach((marker) => bounds.extend([marker.lng, marker.lat]));
+        map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 });
+
     };
     fitMapToMarkers(map, markers);
     const carousel = document.querySelector(".carousel");
@@ -38,20 +62,20 @@ const initMapbox = () => {
         flyOnMap(map, card);
       });
       const start = [markers[0].lng, markers[0].lat];
-      console.log(markers)
+      // console.log(markers)
       const end = [
         markers[markers.length - 1].lng,
         markers[markers.length - 1].lat,
       ];
       const middle = markers.slice(1, -1);
-      var directions = new MapboxDirections({
-        accessToken: mapElement.dataset.mapboxApiKey,
-        unit: "metric",
-        profile: "driving",
-        interactive: false,
+      // var directions = new MapboxDirections({
+      //   accessToken: mapElement.dataset.mapboxApiKey,
+      //   unit: "metric",
+      //   profile: "driving",
+      //   interactive: false,
         // container: "directions", // Specify an element thats not the map container.
-      });
-      map.addControl(directions);
+      // });
+      // map.addControl(directions);
       directions.setOrigin(start);
       middle.forEach((m, i) => directions.addWaypoint(i, [m.lng, m.lat]));
       directions.setDestination(end);
