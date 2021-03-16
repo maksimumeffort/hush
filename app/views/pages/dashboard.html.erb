@@ -1,6 +1,7 @@
-<h1> Dashboard </h1>
+<h1 class="container"> Dashboard </h1>
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <div class="text-center col-md-5 col-md-offset-5 bg-light">
+<ul class="d-flex justify-content-center nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#bookings" role="tab" aria-controls="home" aria-selected="true">Bookings</a>
   </li>
@@ -23,13 +24,14 @@
 
   <div class="tab-pane fade" id="tour_creations" role="tabpanel" aria-labelledby="profile-tab">
   Here are your tour designs:
-    <div class="dash-column">
+    <div class="dash-column py-2">
       <% @my_tour_designs.each do |booking| %>
         <% @tour = booking %>
         <%= render 'shared/tours-show-card' %>
     <% end %>
     </div>
   </div>
-</div>
+ </div>
+
 
 
