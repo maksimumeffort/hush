@@ -1,5 +1,8 @@
 class Tour < ApplicationRecord
 
+    # acts_as_taggable_on :tags
+    acts_as_taggable_on :categories
+
     has_many :tours, dependent: :destroy
     has_many :tour_activities, dependent: :destroy
     belongs_to :tour, optional: true

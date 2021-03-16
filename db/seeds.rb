@@ -79,6 +79,8 @@ end
 
 10.times do
 # puts "creating 1 user & 1 tour"
+  categories = ['History', 'Art', 'Food', 'Music','Outdoor','Family','Grownups','
+    Disabled','Pets']
 
   user = User.all.sample
 
@@ -86,6 +88,7 @@ end
     user: user,
     name: Faker::Coffee.blend_name,
     description: Faker::Coffee.notes,
+    category_list: categories.sample,
     completed: false,
     public: true
     )
