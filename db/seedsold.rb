@@ -77,41 +77,18 @@ end
   )
 end
 
-activities_list = ["Abseiling", "Specialist cocktails", "Farmer's market", "Play a game", "Visit an exhibition", "Photo opportunity", "Amazing coffee!", "Outside dining", "Historical building", "Best pizza - EVER!", "Take a cooking class", "Go Bowling", "Grab an ice cream", "Explore the markets", "Learn about Aboriginal Culture", "Order some street food", "Enjoy some live music"]
-
-tours_list = [
-  {name: "Easy on the wallet tour", description: "The cheapest activities around town"},
-  {name: "Melbourne Laneway Secrets", description: "It's actually not creepy at all."},
-  {name: "AdvenTour", description: "Well I think the name works ..."},
-  {name: "Glenn's Slack Tour", description: "Meme your way around town!"},
-  {name: "Coffee Lovers Tour", description: "Explore Melbourne's prime caffeine hotspots"},
-  {name: "Manon Manon Manon", description: "It's mostly cocktails ... ok fine ... it's all cocktails"},
-  {name: "History Tour", description: "If you like history"},
-  {name: "Melbourne Ghost Tour", description: "Last stop - new undies"},
-  {name: "Food Lover Tour", description: "Loosen your belts"},
-  {name: "Anti-Tourist Hotspots Tour", description: "Hotspots - avoiding the tourists!"},
-  {name: "Dude where's my tour?", description: "Retracing my steps from last night .... "},
-  {name: "Kathy's NightOwl Tour?", description: "Unbelievable activities to do at 3:30am .... "},
-  {name: "Alex's Mystery Tour?", description: "If anyone can take you to 3 places at once - I can :-) "}
-  ]
-
- spare = ["Green escapes", "The Landmark Tour", "City to Sea", "FairyTale Tour", "Pirate Tour", "Alex's Mystery Tour"]
-
 10.times do
 # puts "creating 1 user & 1 tour"
 
   user = User.all.sample
-  tour = tours_list.sample
 
   Tour.create!(
     user: user,
-    name: tour[:name],
-    description: tour[:description],
+    name: Faker::Coffee.blend_name,
+    description: Faker::Coffee.notes,
     completed: false,
     public: true
     )
-
-    tours_list.delete(tour)
 
 # puts "created 1 user and 1 tour"
 
@@ -123,9 +100,9 @@ tours_list = [
 
   Activity.create!(
     user: user,
-    name: activities_list.sample,
-    description: Faker::Marketing.buzzwords,
-    requirements: Faker::Marketing.buzzwords,
+    name: Faker::Game.genre,
+    description: Faker::Movie.quote,
+    requirements: Faker::Movie.quote,
     duration: (1..1440).to_a.sample,
     start_time: time,
     finish_time: time + (1..5).to_a.sample,
@@ -153,5 +130,4 @@ end
 puts "created #{User.count} users, #{Tour.count} duplicated_tours, #{Activity.count} activities, #{TourActivity.count} tour activities."
 
 puts "done creating all fun stuff "
-
 
