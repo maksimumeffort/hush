@@ -79,8 +79,6 @@ end
 
 10.times do
 # puts "creating 1 user & 1 tour"
-  categories = ['History', 'Art', 'Food', 'Music','Outdoor','Family','Grownups','
-    Disabled','Pets']
 
   user = User.all.sample
 
@@ -88,7 +86,6 @@ end
     user: user,
     name: Faker::Coffee.blend_name,
     description: Faker::Coffee.notes,
-    category_list: categories.sample,
     completed: false,
     public: true
     )
@@ -127,8 +124,14 @@ puts "created #{User.count} users, #{Tour.count} tours, #{Activity.count} activi
 end
 
 
+
   Tour.all.each  do |tour|
+
+    filters = ['History', 'Art', 'Food', 'Music','Outdoor','Family','Grownups','Disabled','Pets','Fitness','Adventure','Fashion', 'Beauty','Animals','Books','Friends','Plants','Farming']
+
     tour.clone
+    tour.tag_list.add(filters.sample)
+    tour.save
 end
 puts "created #{User.count} users, #{Tour.count} duplicated_tours, #{Activity.count} activities, #{TourActivity.count} tour activities."
 
