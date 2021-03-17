@@ -67,10 +67,9 @@
         <% end %>
     </nav>
     <!-- filter container goies here, it's part of the navbar but with origin -->
-    <div class="d-block" id="filters_container">
+    <div class="d-none" id="filters_container">
       <div class="container">
-        <ul class="filt_ul container mx-auto">
-
+        <ul class="container">
          <%= simple_form_for :search, class: "filter_form", url: root_path, method: "GET" do |f| %>
          <% $filters.each do |filter| %>
           <% if params["search"].present? && params["search"]["tags"].flatten.include?(filter) %>
@@ -83,12 +82,10 @@
          <% end %>
 
           <%#= f.input :tags,  collection: $filters, as: :check_boxes %>
-          <%= f.submit "Search", class: "btn btn-primary" %>
+        </ul>
+        <%= f.submit "Search", class: "btn btn-primary" %>
           <%= link_to "Reset", root_path  %>
         <% end %>
-
-
-        </ul>
       </div>
     </div>
 
