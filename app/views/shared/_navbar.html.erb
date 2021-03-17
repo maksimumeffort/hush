@@ -25,11 +25,20 @@
           <a class="dropdown-item" href="/dashboard">Edit a Tour</a>
         <% if action_name == "show" %>
           <div class="container">
-            <div class="d-flex w-100 m-0 p-0 ">
-              <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" name="location" aria-label="Search">
-                <button class="ml-1 btn btn-secondary my-2 my-sm-0 filt" type="submit"><i class="fas fa-filter"></i></button>
-              </form>
+            <div class="d-flex w-100 m-0 p-0">
+          <div class="col-10">
+            <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" name="location" aria-label="Search">
+
+              <button class="ml-2 btn btn-outline-success my-2 my-sm-0 col-2" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+
+
+          </form>
+          <!-- filter section-->
+          <div class="col-2">
+            <button class=" btn btn-secondary my-3 my-sm-0" id="filter"><i class="fas fa-filter"></i></button>
+          </div>
             </div>
           </div>
         <% end %>
@@ -38,22 +47,29 @@
     <!-- search section -->
         <% if action_name != "show" %>
         <div class="d-flex w-100 m-0 p-0">
-          <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2 col-8" type="search" placeholder="Search" name="location" aria-label="Search">
+          <div class="col-10">
+            <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2 col-9" type="search" placeholder="Search" name="location" aria-label="Search">
 
-            <button class="ml-2 btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+              <button class="ml-2 btn btn-outline-success my-2 my-sm-0 col-3" type="submit"><i class="fas fa-search"></i></button>
+            </div>
+
+
           </form>
           <!-- filter section-->
+          <div class="col-2">
+            <button class=" btn btn-secondary my-3 my-sm-0" id="filter"><i class="fas fa-filter"></i></button>
+          </div>
 
-          <button class="ml-2 btn btn-secondary my-2 my-sm-0 col-2" id="filter"><i class="fas fa-filter"></i></button>
+
 
         </div>
         <% end %>
     </nav>
     <!-- filter container goies here, it's part of the navbar but with origin -->
-    <div class="d-none" id="filters_container">
-      <div>
-        <ul>
+    <div class="d-block" id="filters_container">
+      <div class="container">
+        <ul class="filt_ul container mx-auto">
 
          <%= simple_form_for :search, class: "filter_form", url: root_path, method: "GET" do |f| %>
          <% $filters.each do |filter| %>
