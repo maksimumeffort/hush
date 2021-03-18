@@ -47,8 +47,8 @@ puts "done creating all users "
 20.times do
 
   time = Time.now - (1..5).to_a.sample
-  latitude = Faker::Number.between(from: -37.6, to: -37.8).round(4)
-  longitude = Faker::Number.between(from: 144.5, to: 145.5).round(4)
+  latitude = Faker::Number.between(from: -37.78, to: -37.83).round(4)
+  longitude = Faker::Number.between(from: 144.93, to: 145.0).round(5)
   results = Geocoder.search([latitude, longitude])
   address = results.first.address
 
@@ -63,8 +63,8 @@ puts "done creating all users "
 end
 
 20.times do
-  latitude = Faker::Number.between(from: -37.7, to: -37.8).round(4)
-  longitude = Faker::Number.between(from: 144.5, to: 144.8).round(4)
+  latitude = Faker::Number.between(from: -37.78, to: -37.83).round(4)
+  longitude = Faker::Number.between(from: 144.93, to: 145.0).round(5)
   results = Geocoder.search([latitude, longitude])
   address = results.first.address
 
