@@ -108,7 +108,7 @@ const initMapbox = () => {
      });
     }
     if (window.location.href.includes('tours')) {
-        map.addControl(directions)
+        // map.addControl(directions)
         const createCoordinates = () => {
         const coordinates = []
       markers.forEach((marker) => {
