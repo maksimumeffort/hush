@@ -147,8 +147,14 @@ puts "created #{User.count} users, #{Tour.count} tours, #{Activity.count} activi
 end
 
 
+
   Tour.all.each  do |tour|
+
+    filters = ['History', 'Art', 'Food', 'Music','Outdoor','Family','Grownups','Disabled','Pets','Fitness','Adventure','Fashion', 'Beauty','Animals','Books','Friends','Plants','Farming']
+
     tour.clone
+    tour.tag_list.add(filters.sample)
+    tour.save
 end
 puts "created #{User.count} users, #{Tour.count} duplicated_tours, #{Activity.count} activities, #{TourActivity.count} tour activities."
 

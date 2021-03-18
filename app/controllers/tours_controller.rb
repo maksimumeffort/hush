@@ -3,10 +3,18 @@ class ToursController < ApplicationController
   before_action :find_tour, only: [:clone, :edit, :show, :update, :destroy, :publish, :start]
 
   def index
+
     search = params[:location]
     @unfiltered_tours = Tour.all.to_a
     @tours = []
     @locations = []
+
+    if params["search"]
+      @filter = params["search"]["tags"].flatten.reject(&:blank?)
+      @unfiltered_tours = @filter.empty? ? Tour.all : Tour.all.tagged_with(@filter, any: true)
+    else
+      @unfiltered_tours = Tour.all
+    end
 
     @unfiltered_tours.each_with_index do |tour, i|
       #if i < 10
@@ -23,6 +31,7 @@ class ToursController < ApplicationController
         lng: flat.longitude
       }
     end
+    # raise
   end
 
   def new
@@ -103,6 +112,6 @@ class ToursController < ApplicationController
   end
 
   def tour_params
-    params.require(:tour).permit(:name, :description)
+    params.require(:tour).permit(:name, :description, :tag_list)
   end
 end

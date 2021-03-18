@@ -1,5 +1,7 @@
 class Tour < ApplicationRecord
 
+    acts_as_taggable_on :tags
+
     has_many :tours, dependent: :destroy
     has_many :tour_activities, dependent: :destroy
     belongs_to :tour, optional: true
@@ -8,6 +10,8 @@ class Tour < ApplicationRecord
     has_many :activities, through: :tour_activities
 
     validates :name, :description, presence: true
+
+    $filters = ['History', 'Art', 'Food', 'Music','Outdoor','Family','Grownups','Disabled','Pets','Fitness','Adventure','Fashion', 'Beauty','Animals','Books','Friends','Plants','Farming']
 
   def clone
     new_tour = self.dup
