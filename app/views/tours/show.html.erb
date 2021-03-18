@@ -5,30 +5,17 @@
   <div class="container-inline-show">
 
     <%= render 'shared/step-container' %>
-    
+
     <!-- Button trigger modal -->
     <div id="activity-button">
-      <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModalCenter">
-        Add Activity
+      <button type="button" class="add-activity"  data-toggle="modal" data-target="#exampleModalCenter">
+        <i class="fas fa-plus"></i>
       </button>
     </div>
   </div>
+  
+<div class="tours-card-container"> <%= render 'shared/tours-show-card' %> </div>
 
-  <%= render 'shared/tours-show-card' %>
+ <%= render 'shared/add-activity-modal' %> 
 
-</div>
 
-<%= render 'shared/add-activity-modal' %>
-
-<script type="text/javascript">
-  var toggleContent = function(obj)
-  {
-      var x = document.getElementById(obj.innerHTML);
-      if (x.style.display === "none") {
-       x.style.display = "block";
-     } else {
-      x.style.display = "none";
-    }
-  }
-
-</script>

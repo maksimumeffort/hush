@@ -1,14 +1,29 @@
 class ToursController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :find_tour, only: [:clone, :edit, :show, :update, :destroy, :publish]
+  skip_before_action :authenticate_user!, only: [:index]
+  before_action :find_tour, only: [:clone, :edit, :show, :update, :destroy, :publish, :start]
 
   def index
-    @tours = Tour.all
+
+    search = params[:location]
+    @unfiltered_tours = Tour.all.to_a
+    @tours = []
     @locations = []
-    @tours.each_with_index do |tour, i|
-      if i < 10
-      @locations << tour.tour_activities.first.activity.location
-      end
+
+    if params["search"]
+      @filter = params["search"]["tags"].flatten.reject(&:blank?)
+      @unfiltered_tours = @filter.empty? ? Tour.all : Tour.all.tagged_with(@filter, any: true)
+    else
+      @unfiltered_tours = Tour.all
+    end
+
+    @unfiltered_tours.each_with_index do |tour, i|
+      #if i < 10
+        location = tour.tour_activities.first.activity.location
+        if search.nil? or location.address.include? "#{search}"
+          @locations << location
+          @tours << tour
+        end
+      #end
     end
     @markers = @locations.map do |flat|
       {
@@ -16,16 +31,24 @@ class ToursController < ApplicationController
         lng: flat.longitude
       }
     end
+    # raise
   end
 
   def new
-      @tour = Tour.new
+    @tour = Tour.new
   end
 
   def create
     @tour = Tour.new(tour_params)
     @tour.user_id = current_user.id
     @tour.save
+    redirect_to tour_path(@tour)
+  end
+
+  def start
+    tour_activity = @tour.tour_activities.first
+    tour_activity.start_time = DateTime.now
+    tour_activity.save
     redirect_to tour_path(@tour)
   end
 
@@ -46,10 +69,10 @@ class ToursController < ApplicationController
       ta_clone.save
     end
   end
-  
+
   def show
     @activity = Activity.new
-    @tour_activities = @tour.tour_activities
+    @tour_activities = @tour.tour_activities.sort_by(&:id)
     @locations = []
     @tour.activities.each do |activity|
       @locations << activity.location
@@ -89,6 +112,6 @@ class ToursController < ApplicationController
   end
 
   def tour_params
-    params.require(:tour).permit(:name, :description)
+    params.require(:tour).permit(:name, :description, :tag_list)
   end
 end

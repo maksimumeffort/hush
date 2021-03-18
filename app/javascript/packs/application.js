@@ -3,6 +3,7 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
+
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
@@ -23,7 +24,7 @@ console.log("Hello from app/javascript/packs/application.js!");
 //       x.style.display = "none";
 //     }
 // });
-
+import { filter } from '../components/navbar';
 import { toggleTourVisibility } from '../components/tours';
 
 document.addEventListener('turbolinks:load', () => {

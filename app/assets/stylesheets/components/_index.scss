@@ -1,5 +1,7 @@
 @import "navbar";
 @import "avatar";
+@import "dashboard_cards";
+@import "buttons";
 h1 {
     size: 8px;
 }
@@ -12,3 +14,8 @@ h1 {
   border-radius: 50%;
   cursor: pointer;
 }
+h5 {
+    margin-bottom: 16px;
+    font-family: sans-serif;
+    font-weight: bold;
+  }
