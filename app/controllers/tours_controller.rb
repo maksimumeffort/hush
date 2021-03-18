@@ -49,7 +49,7 @@ class ToursController < ApplicationController
     tour_activity = @tour.tour_activities.first
     tour_activity.start_time = DateTime.now
     tour_activity.save
-    redirect_to tour_path(@tour)
+    #redirect_to tour_path(@tour)
   end
 
   def clone

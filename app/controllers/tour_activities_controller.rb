@@ -15,6 +15,10 @@ class TourActivitiesController < ApplicationController
   def finish
     @tour_activity.finish_time = DateTime.now
     @tour_activity.save
+    # respond_to do |format| 
+    #   format.js
+    # end
+    #render :partial => 'step-container', :content_type => 'text/html'
     redirect_to tour_path(@tour_activity.tour)
   end
 

@@ -4,7 +4,7 @@
         <% step = @tour_activities.find_index(tour_activity) + 1; step_text = "Step #{step}" %>
 
         <div class="row p-1 step-button">
-            <div style="margin-bottom: 4px;"> <button type="button" id="toggle" class="step-button <%= tour_activity.finish_time == nil ? 'neutral' : 'positive' %>" onclick="toggleContent(this)"><%= step_text %></button> </div>
+            <div style="margin-bottom: 4px;"> <button type="button" id="toggle" data-activity-id="<%= tour_activity.id %>" class="step-button <%= tour_activity.finish_time == nil ? 'neutral' : 'positive' %>" onclick="toggleContent(this)" data-center="<%= {lat: tour_activity.activity.location.latitude, lng: tour_activity.activity.location.longitude}.to_json%>"><%= step_text %></button> </div>
         </div>
         <div class="row p-1 step-card" id="<%= step_text %>" style="display: none">
             <span class="column " >
@@ -17,7 +17,7 @@
             </span>
             <span class="column">
                 <% if tour_activity.finish_time == nil %>
-                    <%= button_to "Done", finish_tour_activity_path(tour_activity), class: "a-primary", method: :patch %>
+                    <%= button_to "Done", finish_tour_activity_path(tour_activity), class: "a-primary", method: :patch, remote: true %>
                 <% end %>
             </span>
             <% end %>
@@ -28,9 +28,11 @@
 </div>
 
 <script type="text/javascript">
+
   var toggleContent = function(obj)
   {
     const steps = document.querySelectorAll("[id^='Step']");
+
     steps.forEach((item) => {
         item.style.display = "none";
     });
@@ -40,7 +42,6 @@
     } else {
         x.style.display = "none";
     }
-
   }
 
 </script>

@@ -9,11 +9,13 @@
 <% tour = Tour.find(params[:id]) %>
 <% if tour.user == current_user %>
     <!-- Button trigger modal -->
-    <div id="activity-button">
-      <button type="button" class="add-activity"  data-toggle="modal" data-target="#exampleModalCenter">
-        <i class="fas fa-plus"></i>
-      </button>
-    </div>
+    <% if (@tour.tour_activities.last.start_time.nil?) %>
+      <div id="activity-button">
+        <button type="button" class="add-activity"  data-toggle="modal" data-target="#exampleModalCenter">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+    <% end %>
   </div>
 <% end %>
 
