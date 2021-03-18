@@ -1,22 +1,18 @@
 <div class="card card-body">
 <!-- <div class="card-tours-show" id="title-card"> -->
-     <h5 class="mb-1"><%= @tour.name %> </h5>
-     <p class =""> Description: <%= @tour.description %> </p>
-      <% if @tour.public == false && @tour.tour == nil %>
-        <div class ="" >
-          <div ><%= link_to "Remove", tour_path(@tour), method: :delete, data: {confirm: "Are you sure?"} %></div>
-          <div ><%= link_to "Publish", publish_tour_path(@tour), class: "btn btn-outline-success", method: :patch %></div>
-        </div>
-      <% elsif @tour.public == true && @tour.tour == nil %>
-        <div class ="" >
-          <div > <%= link_to "Select", clone_tour_path(@tour), class: "btn btn-outline-success", method: :patch %></div>
-        </div>
-      <% elsif @tour.tour != nil && @tour.tour_activities.first.start_time == nil%>
-        <div class ="" >
-          <div ><%= link_to "Start", start_tour_path(@tour), class: "btn btn-outline-success", method: :patch %></div>
-        </div>
-      <% end %>
+  <h5 class="mb-1"><%= @tour.name %> </h5>
+  <p class =""> Description: <%= @tour.description %> </p>
+  <div class="d-flex justify-content-center">
+    <% if @tour.public == false && @tour.tour == nil %>
+        <div ><%= link_to "Remove", tour_path(@tour), class: "btn btn-outline-success mr-1", method: :delete, data: {confirm: "Are you sure?"} %></div>
+        <div ><%= link_to "Publish", publish_tour_path(@tour), class: "btn btn-outline-success", method: :patch %></div>
+    <% elsif @tour.public == true && @tour.tour == nil %>
+        <div > <%= link_to "Select", clone_tour_path(@tour), class: "btn btn-outline-success", method: :patch %></div>
+    <% elsif @tour.tour != nil && @tour.tour_activities.first.start_time == nil%>
+        <div ><%= link_to "Start", start_tour_path(@tour), class: "btn btn-outline-success", method: :patch %></div>
+    <% end %>
+    </div>
 <!--     <div class="row">
-      <div class ="col"> Public: <%= @tour.public %> </div>
-    </div> -->
+  <div class ="col"> Public: <%= @tour.public %> </div>
+</div> -->
 </div>
