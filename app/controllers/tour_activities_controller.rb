@@ -18,7 +18,7 @@ class TourActivitiesController < ApplicationController
     respond_to do |format| 
       format.js
     end
-    #render :partial => 'step-container', :content_type => 'text/html'
+    render :partial => 'step-container', :content_type => 'text/html'
     #redirect_to tour_path(@tour_activity.tour)
   end
 
