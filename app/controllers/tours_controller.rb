@@ -17,13 +17,13 @@ class ToursController < ApplicationController
     end
 
     @unfiltered_tours.each_with_index do |tour, i|
-      #if i < 10
+      if !tour.tour_activities.empty?
         location = tour.tour_activities.first.activity.location
         if search.nil? or location.address.include? "#{search}"
           @locations << location
           @tours << tour
         end
-      #end
+      end
     end
     @markers = @locations.map do |flat|
       {
@@ -82,6 +82,10 @@ class ToursController < ApplicationController
         lat: flat.latitude,
         lng: flat.longitude
       }
+    end
+    @start_time = ''
+    if(!@tour_activities.empty?)
+      @start_time = @tour_activities.last.start_time
     end
   end
 

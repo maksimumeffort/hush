@@ -57,7 +57,7 @@ const initMapbox = () => {
     };
     const map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/alemaks1993/ckm7pyk1ma1ap17qs70bur639"
+      style: "mapbox://styles/mapbox/streets-v10"
 
     });
     const directions = new MapboxDirections({
@@ -68,7 +68,27 @@ const initMapbox = () => {
 
     });
 
+    const steps = document.querySelectorAll(".step-button");
+    steps.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        flyOnMap(map, e.target)
+        })
+    });
 
+    const start = document.querySelector("#start-button")
+    if (start != null) {
+      const step1 = document.querySelector(".neutral")
+      start.addEventListener("click", (e) => {
+        flyOnMap(map, step1)
+        const steps = document.querySelectorAll("[id^='Step']");
+
+        steps.forEach((item) => {
+            item.style.display = "none";
+        });
+        var x = document.querySelector(".step-card")
+        x.style.display = "block";    
+      });
+    }
     // directions conditional (only run if page = show)
     //   if (window.location.href.includes('tours')) {
     //     map.addControl(directions)
