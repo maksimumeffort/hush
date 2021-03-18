@@ -96,7 +96,7 @@ const initMapbox = () => {
       geojson.features.forEach(function (marker) {
       // create a HTML element for each feature
       const el = document.createElement('div');
-      el.className = 'marker';
+      el.className = 'h2 text-primary fas fa-map-marker-alt font-siz';
       // make a marker for each feature and add it to the map
       new mapboxgl.Marker(el)
       .setLngLat(marker.geometry.coordinates)
