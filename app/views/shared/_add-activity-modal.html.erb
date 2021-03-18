@@ -14,7 +14,7 @@
           <%= f.input :description %>
           <%= f.input :requirements %>
           <%= f.input :duration %>
-          <%= f.association :location %>
+          <%= f.association :location, label_method: :label %>
           <%= f.submit class: "btn btn-primary"%>
         <% end %>
       </div>  

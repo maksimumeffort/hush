@@ -1,0 +1,8 @@
+(() => {
+    console.log('Hi')
+    const activityId = "<%= @tour_activity.id %>"
+    const finishTime = "<%= @tour_activity.finish_time %>"
+    const button = document.querySelector(`[data-activity-id='${activityId}']`)
+    button.classList.remove("neutral")
+    button.classList.add("positive")
+})();
