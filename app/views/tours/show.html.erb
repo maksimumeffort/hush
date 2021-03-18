@@ -6,6 +6,8 @@
 
     <%= render 'shared/step-container' %>
 
+<% tour = Tour.find(params[:id]) %>
+<% if tour.user == current_user %>
     <!-- Button trigger modal -->
     <div id="activity-button">
       <button type="button" class="add-activity"  data-toggle="modal" data-target="#exampleModalCenter">
@@ -13,9 +15,10 @@
       </button>
     </div>
   </div>
-  
+<% end %>
+
 <div class="tours-card-container"> <%= render 'shared/tours-show-card' %> </div>
 
- <%= render 'shared/add-activity-modal' %> 
+ <%= render 'shared/add-activity-modal' %>
 
 
