@@ -8,8 +8,11 @@
         </div>
         <div class="row p-1 step-card" id="<%= step_text %>" style="display: none">
             <span class="column " >
-                <h5 class="card-title"><b><%= tour_activity.activity.name %></b></h5>  
+                <h5 class="card-title"><b><%= tour_activity.activity.name %></b></h5>
                 <p class="card-text"><%= tour_activity.activity.location.address %> </p>
+
+            <% tour = Tour.find(params[:id]) %>
+            <% if tour.user == current_user %>
                 <p class="card-text"><b>Finish Time:</b> <%= tour_activity.finish_time != nil ? tour_activity.finish_time.strftime('%a, %d %b %Y %H:%M:%S')  : '' %> </p>
             </span>
             <span class="column">
@@ -17,6 +20,8 @@
                     <%= button_to "Done", finish_tour_activity_path(tour_activity), class: "a-primary", method: :patch, remote: true %>
                 <% end %>
             </span>
+            <% end %>
+
         </div>
         <% end %>
     </div>
