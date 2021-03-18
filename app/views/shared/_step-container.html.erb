@@ -13,7 +13,6 @@
 
             <% tour = Tour.find(params[:id]) %>
             <% if tour.user == current_user %>
-                <p class="card-text"><b>Start Time:</b> <%= tour_activity.start_time != nil ? tour_activity.start_time.strftime('%a, %d %b %Y %H:%M:%S')  : '' %> </p>
                 <p class="card-text"><b>Finish Time:</b> <%= tour_activity.finish_time != nil ? tour_activity.finish_time.strftime('%a, %d %b %Y %H:%M:%S')  : '' %> </p>
             </span>
             <span class="column">
