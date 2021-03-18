@@ -1,6 +1,6 @@
 <div class="card card-body">
 <!-- <div class="card-tours-show" id="title-card"> -->
-  <h5 class="mb-1"><%= @tour.name %> </h5>
+  <h5 class="mb-1"><%= link_to @tour.name, tour_path(@tour), class: "text-dark"%> </h5>
   <p class =""> Description: <%= @tour.description %> </p>
   <div class="d-flex justify-content-center">
     <% if @tour.public == false && @tour.tour == nil %>

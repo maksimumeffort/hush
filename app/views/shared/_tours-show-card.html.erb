@@ -1,7 +1,7 @@
 <div class="card card-body" id="title-card">
 <!-- <div class="card-tours-show" id="title-card"> -->
   
-     <h5 class="mb-1"><%= @tour.name %> </h5>
+     <h5 class="mb-1"><%= link_to @tour.name, tour_path(@tour), class: "text-dark"%> </h5>
      <p class =""> Description: <%= @tour.description %> </p>
      <div class="d-flex">
       <% if @tour.public == false && @tour.tour == nil %>
@@ -9,8 +9,8 @@
           <div><%= link_to "Publish", publish_tour_path(@tour), class: "btn btn-outline-success", method: :patch %></div>
       <% elsif @tour.public == true && @tour.tour == nil %>
           <div> <%= link_to "Select", clone_tour_path(@tour), class: "btn btn-outline-success", method: :patch %></div>
-      <% elsif @tour.tour != nil && @tour.tour_activities.first.start_time == nil%>
-          <div><%= link_to "Start", start_tour_path(@tour), class: "btn btn-outline-success", method: :patch %></div>
+      <% elsif @tour.tour != nil && @tour.tour_activities.first.start_time == nil && action_name == "show" %>
+          <div><%= link_to "Start", start_tour_path(@tour), class: "btn btn-outline-success", id: "start-button", method: :patch %></div>
       <% end %>
     </div>
 <!--     <div class="row">
