@@ -63,8 +63,8 @@ puts "done creating all users "
 end
 
 20.times do
-  latitude = Faker::Number.between(from: -37.6, to: -37.8).round(4)
-  longitude = Faker::Number.between(from: 144.5, to: 145.5).round(4)
+  latitude = Faker::Number.between(from: -37.7, to: -37.8).round(4)
+  longitude = Faker::Number.between(from: 144.5, to: 144.8).round(4)
   results = Geocoder.search([latitude, longitude])
   address = results.first.address
 
@@ -101,17 +101,22 @@ tours_list = [
 # puts "creating 1 user & 1 tour"
 
   user = User.all.sample
-  tour = tours_list.sample
+  tour_template = tours_list.sample
 
-  Tour.create!(
+   filters = ['History', 'Art', 'Food', 'Music','Outdoor','Family','Grownups','Disabled','Pets','Fitness','Adventure','Fashion', 'Beauty','Animals','Books','Friends','Plants','Farming']
+
+  tour = Tour.new(
     user: user,
-    name: tour[:name],
-    description: tour[:description],
+    name: tour_template[:name],
+    description: tour_template[:description],
     completed: false,
     public: true
     )
 
-    tours_list.delete(tour)
+    tour.tag_list.add(filters.sample)
+    tour.save!
+
+    tours_list.delete(tour_template)
 
 # puts "created 1 user and 1 tour"
 
@@ -146,16 +151,6 @@ tours_list = [
 puts "created #{User.count} users, #{Tour.count} tours, #{Activity.count} activities, #{TourActivity.count} tour activities."
 end
 
-
-
-  Tour.all.each  do |tour|
-
-    filters = ['History', 'Art', 'Food', 'Music','Outdoor','Family','Grownups','Disabled','Pets','Fitness','Adventure','Fashion', 'Beauty','Animals','Books','Friends','Plants','Farming']
-
-    tour.clone
-    tour.tag_list.add(filters.sample)
-    tour.save
-end
 puts "created #{User.count} users, #{Tour.count} duplicated_tours, #{Activity.count} activities, #{TourActivity.count} tour activities."
 
 puts "done creating all fun stuff "
