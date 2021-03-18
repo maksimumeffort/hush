@@ -1,0 +1,21 @@
+<!-- Modal -->
+<div class="modal fade" id="new-tour-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content " id="new-container">
+      <div class="modal-body">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h2 class="text-center">Create your tour</h2>
+        <br>
+        <div class="container">
+        <%= simple_form_for(@new_tour) do |f| %>
+          <%= f.input :name %>
+          <%= f.input :description %>
+          <%= f.submit %>
+        <% end %>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>    
