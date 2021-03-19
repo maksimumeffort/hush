@@ -15,7 +15,6 @@ const flyOnMap = (map, card) => {
 };
 
 
-
 const initMapbox = () => {
   const mapElement = document.getElementById("map");
   if (mapElement) {
