@@ -16,9 +16,14 @@ const flyOnMap = (map, card) => {
 const initMapbox = () => {
   const mapElement = document.getElementById("map");
   if (mapElement) {
-    // only build a map if there's a div#map to inject into
-    // mapbox element
+    // only build a map if there's a div#map to inject into'
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
+    const map = new mapboxgl.Map({
+      container: "map",
+      style: "mapbox://styles/mapbox/streets-v10"
+    });
+    if (map.getLayer('route')) map.removeLayer('route');
+    // mapbox element
     const geoJsonFeatures = [];
     // write a little function that creates an array in the format that we need with the data from the markers
     const createFeaturesForGeoJsonObject = (markers) => {
@@ -33,7 +38,6 @@ const initMapbox = () => {
         });
       });
     };
-    // console.log("markers");
     // get markers
     const markers = JSON.parse(mapElement.dataset.markers);
     createFeaturesForGeoJsonObject(markers);
@@ -43,10 +47,6 @@ const initMapbox = () => {
       type: "FeatureCollection",
       features: geoJsonFeatures
     };
-    const map = new mapboxgl.Map({
-      container: "map",
-      style: "mapbox://styles/mapbox/streets-v10"
-    });
     // can we do something like geoJSON features but for directions???
     const directions = new MapboxDirections({
       accessToken: mapElement.dataset.mapboxApiKey,
@@ -80,14 +80,13 @@ const initMapbox = () => {
       });
     }
     // declaring coordinates for markers and creating div for every
-    geojson.features.forEach(function (marker) {
+    geojson.features.forEach((marker, index) => {
       // create a HTML element for each feature
       const el = document.createElement("div");
       el.className = "fas fa-map-marker-alt text-primary h2";
       // make a marker for each feature and add it to the map
       new mapboxgl.Marker(el).setLngLat(marker.geometry.coordinates).addTo(map);
     });
-    // console.log(geojson.features)
     const fitMapToMarkers = (map, markers) => {
       const bounds = new mapboxgl.LngLatBounds();
       markers.forEach((marker) =>
@@ -139,34 +138,37 @@ const initMapbox = () => {
         });
       };
       directions.on("route", function (e) {
-        if (map.getSource('directions')) map.removeSource('directions');
-        getCoordinates(e.route);
-        map.addSource("route", {
-          type: "geojson",
-          data: {
-            type: "Feature",
-            properties: {},
-            geometry: {
-              type: "LineString",
-              coordinates: coordinates
-            }
-          }
-        });
-        map.addLayer({
-          id: "route",
-          type: "line",
-          source: "route",
-          layout: {
-            "line-join": "round",
-            "line-cap": "round"
-          },
-          paint: {
-            "line-color": "#4264fb",
-            "line-width": 3
-          }
-        });
+        if (map.getLayer("route")) {
+          map.removeLayer('route');
+          map.removeSource('route');
+        }
+          getCoordinates(e.route);
+            map.addSource("route", {
+              type: "geojson",
+              data: {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "LineString",
+                  coordinates: coordinates
+                }
+              }
+            });
+            map.addLayer({
+              id: "route",
+              type: "line",
+              source: "route",
+              layout: {
+                "line-join": "round",
+                "line-cap": "round"
+              },
+              paint: {
+                "line-color": "#4264fb",
+                "line-width": 3
+              }
+            });
       });
-    }
+    };
   }
 };
 export { initMapbox };
