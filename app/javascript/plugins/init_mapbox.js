@@ -68,10 +68,10 @@ const initMapbox = () => {
         flyOnMap(map, e.target)
         })
     });
-    const start = document.querySelector("#start-button")
-    if (start != null) {
+    const startButton = document.querySelector("#startButton-button")
+    if (startButton != null) {
       const step1 = document.querySelector(".neutral")
-      start.addEventListener("click", (e) => {
+      startButton.addEventListener("click", (e) => {
         flyOnMap(map, step1)
         const steps = document.querySelectorAll("[id^='Step']");
         steps.forEach((item) => {
@@ -116,21 +116,51 @@ const initMapbox = () => {
       const middle = markers.slice(1, -1);
       middle.forEach((m, i) => directions.addWaypoint(i, [m.lng, m.lat]));
       map.on('load', function() {
-        console.log("loading")
         directions.setOrigin(start);
         directions.setDestination(end);
       });
-      // (important) This seems to be a requirement for getting directions to work
-      map.addControl(directions);
-      // (important)
+      // map.addControl(directions);
+      const coordinates = []
+      const getCoordinates = (routeSteps) => {
+        routeSteps.forEach((routeStep) => {
+          routeStep.legs.forEach((leg) => {
+            leg.steps.forEach((step) => {
+              step.intersections.forEach((intersection) => {
+                coordinates.push([intersection.location[0], intersection.location[1]])
+              })
+            })
+            coordinates.push([])
+          })
+        })
+      }
       directions.on("route", function (e) {
-        console.log(e.route);
-        // directions.setOrigin(start);
-        // directions.setDestination(end);
-             // Logs the current route shown in the interface.
-        });
+        getCoordinates(e.route)
+        map.addSource('route', {
+          'type': 'geojson',
+          'data': {
+            'type': 'Feature',
+            'properties': {},
+            'geometry': {
+              'type': 'LineString',
+              'coordinates': coordinates
+            }
+          }
+          });
+          map.addLayer({
+            'id': 'route',
+            'type': 'line',
+            'source': 'route',
+            'layout': {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            'paint': {
+              'line-color': '#4264fb',
+              'line-width': 2
+            }
+          });
+      });
     };
-  // this is where the code from the next step will go
   };
 };
 export { initMapbox };
