@@ -47,7 +47,7 @@ const initMapbox = () => {
     };
     const map = new mapboxgl.Map({
       container: "map",
-      style: "mapbox://styles/alemaks1993/ckm7pyk1ma1ap17qs70bur639"
+      style: "mapbox://styles/mapbox/streets-v10"
     });
     // can we do something like geoJSON features but for directions???
     const directions = new MapboxDirections({
@@ -85,7 +85,7 @@ const initMapbox = () => {
     geojson.features.forEach(function (marker) {
     // create a HTML element for each feature
       const el = document.createElement('div');
-      el.className = 'marker';
+      el.className = 'fas fa-map-marker-alt text-primary h2';
     // make a marker for each feature and add it to the map
       new mapboxgl.Marker(el)
       .setLngLat(marker.geometry.coordinates)
