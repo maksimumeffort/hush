@@ -61,6 +61,25 @@ const initMapbox = () => {
       // zoom: 10,
       // flyTo:false
     });
+    const steps = document.querySelectorAll(".step-button");
+    steps.forEach((item) => {
+      item.addEventListener("click", (e) => {
+        flyOnMap(map, e.target)
+        })
+    });
+    const start = document.querySelector("#start-button")
+    if (start != null) {
+      const step1 = document.querySelector(".neutral")
+      start.addEventListener("click", (e) => {
+        flyOnMap(map, step1)
+        const steps = document.querySelectorAll("[id^='Step']");
+        steps.forEach((item) => {
+            item.style.display = "none";
+        });
+        var x = document.querySelector(".step-card")
+        x.style.display = "block";
+      });
+    }
     // declaring coordinates for markers and creating div for every
     geojson.features.forEach(function (marker) {
     // create a HTML element for each feature
@@ -95,8 +114,11 @@ const initMapbox = () => {
       ];
       const middle = markers.slice(1, -1);
       middle.forEach((m, i) => directions.addWaypoint(i, [m.lng, m.lat]));
-      directions.setOrigin(start);
-      directions.setDestination(end);
+      map.on('load', function() {
+        console.log("loading")
+        directions.setOrigin(start);
+        directions.setDestination(end);
+      });
       // (important) This seems to be a requirement for getting directions to work
       map.addControl(directions);
       // (important)
