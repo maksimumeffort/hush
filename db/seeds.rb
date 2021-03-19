@@ -77,7 +77,25 @@ end
   )
 end
 
-activities_list = ["Abseiling", "Specialist cocktails", "Farmer's market", "Play a game", "Visit an exhibition", "Photo opportunity", "Amazing coffee!", "Outside dining", "Historical building", "Best pizza - EVER!", "Take a cooking class", "Go Bowling", "Grab an ice cream", "Explore the markets", "Learn about Aboriginal Culture", "Order some street food", "Enjoy some live music"]
+activities_list = [
+  {name: "Abseiling", description: "Abseil down a 20 story building"},
+  {name: "Specialist cocktails", description: "Drink some of Melbourne's finest cocktails"},
+  {name: "Farmer's market", description: "See what you can find"},
+  {name: "Play a game", description: "Try your luck in this unique game"},
+  {name: "Visit an exhibition", description: "Check out this exhibition"},
+  {name: "Photo opportunity", description: "Get your photo taken at this great location"},
+  {name: "Amazing coffee!", description: "Experience for yourself why Melbourne is internationally known for its coffee"},
+  {name: "Outside dining", description: "Treat yourself to some fine food and wine"},
+  {name: "Historical building", description: "This building is older than your great great grandfather"},
+  {name: "Best pizza - EVER!", description: "Dont take our word for it, try it yourself!"},
+  {name: "Take a cooking class", description: "Who says you can't teach an old dog new tricks"},
+  {name: "Go Bowling", description: "Everyone loves a game of bowling"},
+  {name: "Grab an ice cream", description: "I scream for ice cream"},
+  {name: "Explore the markets", description: "Who knows what you'll find"},
+  {name: "Learn about Aboriginal Culture", description: "Spend some time getting to know how aboriginal people live"},
+  {name: "Order some street food", description: "Try something you've never tried before"},
+  {name: "Enjoy some live music", description: "Have a listen to some of the local artists in the area"}
+]
 
 tours_list = [
   {name: "Easy on the wallet tour", description: "The cheapest activities around town"},
@@ -125,12 +143,12 @@ tours_list = [
 # puts "creating 1 activity"
 
   time = Time.now - (1..5).to_a.sample
-
+    activity = activities_list.sample
   Activity.create!(
     user: user,
-    name: activities_list.sample,
-    description: Faker::Marketing.buzzwords,
-    requirements: Faker::Marketing.buzzwords,
+    name: activity[:name],
+    description: activity[:description],
+    requirements: activity[:description],
     duration: (1..1440).to_a.sample,
     start_time: time,
     finish_time: time + (1..5).to_a.sample,

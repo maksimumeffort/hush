@@ -10,10 +10,10 @@
             <span class="column " >
                 <h5 class="card-title"><b><%= tour_activity.activity.name %></b></h5>
                 <p class="card-text"><%= tour_activity.activity.location.address %> </p>
-
-            <% tour = Tour.find(params[:id]) %>
-            <% if tour.user == current_user %>
-                <p class="card-text"><b>Finish Time:</b> <%= tour_activity.finish_time != nil ? tour_activity.finish_time.strftime('%a, %d %b %Y %H:%M:%S')  : '' %> </p>
+                <p class="card-text"><%= tour_activity.activity.description %> </p>
+                <% tour = Tour.find(params[:id]) %>
+                <% if tour.user == current_user %>
+                    <p class="card-text"><b>Finish Time:</b> <%= tour_activity.finish_time != nil ? tour_activity.finish_time.strftime('%a, %d %b %Y %H:%M:%S')  : '' %> </p>
             </span>
             <span class="column">
                 <% if tour_activity.finish_time == nil %>
