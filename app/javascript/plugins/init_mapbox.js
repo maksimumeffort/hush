@@ -1,8 +1,10 @@
 // latest try
 import mapboxgl from "mapbox-gl";
+
 import MapboxDirections from "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions";
 import "@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css";
 import "mapbox-gl/dist/mapbox-gl.css";
+
 // window.mapboxgl = mapboxgl
 mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 const flyOnMap = (map, card) => {
@@ -49,15 +51,26 @@ const initMapbox = () => {
       type: "FeatureCollection",
       features: geoJsonFeatures
     };
+
     // can we do something like geoJSON features but for directions???
-    const directions = new MapboxDirections({
+    const directions = new
+      MapboxDirections({
       accessToken: mapElement.dataset.mapboxApiKey,
-      unit: "metric",
-      profile: "mapbox/driving",
+
+      unit: 'metric',
+      profile: 'mapbox/walking',
       controls: { profileSwitcher: false, instructions: false, inputs: false },
-      interactive: false
+      interactive: false,
+      // styles:  [8]{
+      //   'id': 'directions-destination-point',
+      //   'type': 'circle',
+      //   'source': 'directions',
+      //   'paint': {
+      //     'circle-radius': 18,
+      //     'circle-color': 'red'
+      //   }
       // this is not working, unclear how to target the paint class
-      // styles: [paint:{'line-color': '#bbb'} ]
+      //
       // this was working for a second then stopped, don't want it to fly to the position on map
       // zoom: 10,
       // flyTo:false
@@ -137,6 +150,7 @@ const initMapbox = () => {
             });
             coordinates.push([]);
           });
+
         });
       };
       directions.on("route", function (e) {
