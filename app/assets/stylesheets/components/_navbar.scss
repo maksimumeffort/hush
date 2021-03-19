@@ -29,17 +29,21 @@
 // .filt_ul {
 //   width:300px;
 // }
+.padding{
+  margin-top: 30px;
+}
 
 #filter{
   background-color: #7B7B7B;
   margin-left: -5px;
 }
 
+
 #filters_container{
-  height: 450px;
-  width:300px;
+  height: 350px;
+  width:95%;
   position:relative;
-  border-top: 1px solid white;
+  border-top: 2px solid #B3B3B3;
   // y:-300px;
 }
 

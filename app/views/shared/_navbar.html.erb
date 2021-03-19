@@ -56,25 +56,34 @@
         <% end %>
     </nav>
     <!-- filter container goies here, it's part of the navbar but with origin -->
-    <div class="d-none" id="filters_container">
-      <div class="container">
-        <ul class="container">
-         <%= simple_form_for :search, class: "filter_form", url: root_path, method: "GET" do |f| %>
-         <% $filters.each do |filter| %>
-          <% if params["search"].present? && params["search"]["tags"].flatten.include?(filter) %>
-          <div class="form-check"><input
-          checked="<%= true %>" class="form-check-input check_boxes required" type="checkbox" value="<%= filter %>" name="search[tags][]" id="search_tags_<%= filter.downcase %>"><label class="form-check-label collection_check_boxes" for="search_tags_<%= filter.downcase %>"> <%= filter %></label></div>
-          <% else %>
-          <div class="form-check"><input
-           class="form-check-input check_boxes required" type="checkbox" value="<%= filter %>" name="search[tags][]" id="search_tags_<%= filter.downcase %>"><label class="form-check-label collection_check_boxes" for="search_tags_<%= filter.downcase %>"> <%= filter %></label></div>
-           <% end %>
-         <% end %>
+    <div class="d-block" id="filters_container">
+      <div class="container padding d-flex">
 
-          <%#= f.input :tags,  collection: $filters, as: :check_boxes %>
-        </ul>
-        <%= f.submit "Search", class: "btn btn-primary" %>
-          <%= link_to "Reset", root_path  %>
-        <% end %>
+        <div class=" d-flex justify-content-center">
+          <ul class="pl-2 ">
+           <%= simple_form_for :search, class: "filter_form", url: root_path, method: "GET" do |f| %>
+           <% $filters.each do |filter| %>
+            <% if params["search"].present? && params["search"]["tags"].flatten.include?(filter) %>
+            <div class="form-check"><input
+            checked="<%= true %>" class="form-check-input check_boxes required" type="checkbox" value="<%= filter %>" name="search[tags][]" id="search_tags_<%= filter.downcase %>"><label class="form-check-label collection_check_boxes" for="search_tags_<%= filter.downcase %>"> <%= filter %></label></div>
+            <% else %>
+            <div class="form-check"><input
+             class="form-check-input check_boxes required" type="checkbox" value="<%= filter %>" name="search[tags][]" id="search_tags_<%= filter.downcase %>"><label class="form-check-label collection_check_boxes" for="search_tags_<%= filter.downcase %>"> <%= filter %></label></div>
+             <% end %>
+           <% end %>
+
+            <%#= f.input :tags,  collection: $filters, as: :check_boxes %>
+          </ul>
+        </div>
+        <%= f.submit "Search", class: "btn btn-outline-success filt_search" %>
+
+          <button class=" btn btn-secondary">
+              <%= link_to "",root_path %>
+              <i class="fas fa-undo"></i>
+            <% end %>
+          </button>
+
+
       </div>
     </div>
 
