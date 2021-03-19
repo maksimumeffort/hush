@@ -28,11 +28,13 @@ console.log("Hello from app/javascript/packs/application.js!");
 // });
 import { initFilter } from '../components/navbar';
 import { toggleTourVisibility } from '../components/tours';
-import { style } from '../plugins/directions_style';
+import { initDirectionStyle } from '../plugins/directions_style';
+
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initFilter();
+  initDirectionStyle();
 })
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

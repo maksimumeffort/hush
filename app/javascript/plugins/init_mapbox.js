@@ -51,15 +51,26 @@ const initMapbox = () => {
       container: "map",
       style: "mapbox://styles/mapbox/streets-v10"
     });
+
+
     // can we do something like geoJSON features but for directions???
-    const directions = new MapboxDirections({
+    const directions = new
+      MapboxDirections({
       accessToken: mapElement.dataset.mapboxApiKey,
       unit: 'metric',
-      profile: 'mapbox/driving',
+      profile: 'mapbox/walking',
       controls: { profileSwitcher: false, instructions: false, inputs: false },
-      interactive: false
+      interactive: false,
+      // styles:  [8]{
+      //   'id': 'directions-destination-point',
+      //   'type': 'circle',
+      //   'source': 'directions',
+      //   'paint': {
+      //     'circle-radius': 18,
+      //     'circle-color': 'red'
+      //   }
       // this is not working, unclear how to target the paint class
-      // styles: [paint:{'line-color': '#bbb'} ]
+      //
       // this was working for a second then stopped, don't want it to fly to the position on map
       // zoom: 10,
       // flyTo:false
@@ -124,6 +135,7 @@ const initMapbox = () => {
       });
       // (important) This seems to be a requirement for getting directions to work
       map.addControl(directions);
+      map.addLayer({ 'id': 'directions-route-line', 'type': 'line', 'source': 'directions', 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#00FF00', 'line-width': 4 }, 'filter': [ 'all', ['in', '$type', 'LineString'], ['in', 'route', 'selected'] ] })
       // (important)
       directions.on("route", function (e) {
         console.log(e.route);
