@@ -1,7 +1,6 @@
 class ToursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index]
   before_action :find_tour, only: [:clone, :edit, :show, :update, :destroy, :publish, :start]
-  before_action :new_tour
 
   def index
 
@@ -120,7 +119,4 @@ class ToursController < ApplicationController
     params.require(:tour).permit(:name, :description, :tag_list)
   end
 
-  def new_tour
-    @new_tour = Tour.new
-  end
 end
