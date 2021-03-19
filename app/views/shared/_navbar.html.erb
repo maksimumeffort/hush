@@ -2,10 +2,19 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
     <!-- logo element -->
+    <div>
     <%= link_to root_path do %>
       <%= image_tag("logo.png", alt: 'Logo',class: 'small')%>
     <% end %>
+    </div>
     <!-- logo end -->
+
+    <!-- credits -->
+
+    <div id="credits">
+    <%= link_to "by w4","/about"%>
+    </div>
+    <!-- end credits -->
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -18,23 +27,18 @@
           <a class="dropdown-item"  data-toggle="modal" data-target="#new-tour-modal">Create a tour</a>
           <a class="dropdown-item" href="/dashboard">Edit a Tour</a>
         <% if action_name == "show" %>
-          <div class="container">
-            <div class="d-flex w-100 m-0 p-0">
-          <div class="col-10">
+          <div class="d-flex w-100 m-0 p-0">
             <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" name="location" aria-label="Search">
-
+              <input class="form-control mr-sm-2 col-9 mr-1" type="search" placeholder="Search" name="location" aria-label="Search">
               <button class="ml-2 btn btn-outline-success my-2 my-sm-0 col-2" type="submit"><i class="fas fa-search"></i></button>
-            </div>
-
-
           </form>
           <!-- filter section-->
           <div class="col-2">
             <button class=" btn btn-secondary my-3 my-sm-0" id="filter"><i class="fas fa-filter"></i></button>
           </div>
-            </div>
-          </div>
+
+        </div>
+
         <% end %>
       </ul>
     </div>
@@ -42,39 +46,46 @@
         <% if action_name != "show" %>
         <div class="d-flex w-100 m-0 p-0">
             <form action="/tours" id="search" class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2 col-9" type="search" placeholder="Search" name="location" aria-label="Search">
-              <button class="ml-2 btn btn-outline-success my-2 my-sm-0 col-3" type="submit"><i class="fas fa-search"></i></button>
+              <input class="form-control mr-sm-2 col-9 mr-1" type="search" placeholder="Search" name="location" aria-label="Search">
+              <button class="ml-2 btn btn-outline-success my-2 my-sm-0 col-2" type="submit"><i class="fas fa-search"></i></button>
           </form>
           <!-- filter section-->
           <div class="col-2">
             <button class=" btn btn-secondary my-3 my-sm-0" id="filter"><i class="fas fa-filter"></i></button>
           </div>
 
-
-
         </div>
         <% end %>
     </nav>
     <!-- filter container goies here, it's part of the navbar but with origin -->
     <div class="d-none" id="filters_container">
-      <div class="container">
-        <ul class="container">
-         <%= simple_form_for :search, class: "filter_form", url: root_path, method: "GET" do |f| %>
-         <% $filters.each do |filter| %>
-          <% if params["search"].present? && params["search"]["tags"].flatten.include?(filter) %>
-          <div class="form-check"><input
-          checked="<%= true %>" class="form-check-input check_boxes required" type="checkbox" value="<%= filter %>" name="search[tags][]" id="search_tags_<%= filter.downcase %>"><label class="form-check-label collection_check_boxes" for="search_tags_<%= filter.downcase %>"> <%= filter %></label></div>
-          <% else %>
-          <div class="form-check"><input
-           class="form-check-input check_boxes required" type="checkbox" value="<%= filter %>" name="search[tags][]" id="search_tags_<%= filter.downcase %>"><label class="form-check-label collection_check_boxes" for="search_tags_<%= filter.downcase %>"> <%= filter %></label></div>
-           <% end %>
-         <% end %>
+      <div class="container padding d-flex">
 
-          <%#= f.input :tags,  collection: $filters, as: :check_boxes %>
-        </ul>
-        <%= f.submit "Search", class: "btn btn-primary" %>
-          <%= link_to "Reset", root_path  %>
-        <% end %>
+        <div class=" d-flex justify-content-center">
+          <ul class="pl-2 ">
+           <%= simple_form_for :search, class: "filter_form", url: root_path, method: "GET" do |f| %>
+           <% $filters.each do |filter| %>
+            <% if params["search"].present? && params["search"]["tags"].flatten.include?(filter) %>
+            <div class="form-check"><input
+            checked="<%= true %>" class="form-check-input check_boxes required" type="checkbox" value="<%= filter %>" name="search[tags][]" id="search_tags_<%= filter.downcase %>"><label class="form-check-label collection_check_boxes" for="search_tags_<%= filter.downcase %>"> <%= filter %></label></div>
+            <% else %>
+            <div class="form-check"><input
+             class="form-check-input check_boxes required" type="checkbox" value="<%= filter %>" name="search[tags][]" id="search_tags_<%= filter.downcase %>"><label class="form-check-label collection_check_boxes" for="search_tags_<%= filter.downcase %>"> <%= filter %></label></div>
+             <% end %>
+           <% end %>
+
+            <%#= f.input :tags,  collection: $filters, as: :check_boxes %>
+          </ul>
+        </div>
+        <%= f.submit "Search", class: "btn btn-outline-success filt_search" %>
+
+          <button class=" btn btn-secondary">
+              <%= link_to "",root_path %>
+              <i class="fas fa-undo"></i>
+            <% end %>
+          </button>
+
+
       </div>
     </div>
 
