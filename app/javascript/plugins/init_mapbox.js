@@ -55,6 +55,7 @@ const initMapbox = () => {
       unit: 'metric',
       profile: 'mapbox/driving',
       controls: { profileSwitcher: false, instructions: false, inputs: false },
+      interactive: false
       // this is not working, unclear how to target the paint class
       // styles: [paint:{'line-color': '#bbb'} ]
       // this was working for a second then stopped, don't want it to fly to the position on map
