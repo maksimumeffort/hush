@@ -32,13 +32,15 @@
 
   var toggleContent = function(obj)
   {
+    var x = document.getElementById(obj.innerHTML);
+    var xStyle = x.style.display
+
     const steps = document.querySelectorAll("[id^='Step']");
 
     steps.forEach((item) => {
         item.style.display = "none";
     });
-    var x = document.getElementById(obj.innerHTML);
-    if (x.style.display === "none") {
+    if (xStyle === "none") {
         x.style.display = "block";
     } else {
         x.style.display = "none";
