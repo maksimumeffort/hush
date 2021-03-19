@@ -13,6 +13,9 @@ const flyOnMap = (map, card) => {
     zoom: 15
   });
 };
+
+
+
 const initMapbox = () => {
   const mapElement = document.getElementById("map");
   if (mapElement) {
