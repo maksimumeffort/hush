@@ -20,7 +20,7 @@ user1 = User.create!(
   password: 123456,
   # name: Faker::Name.name,
   bio: Faker::Quote.jack_handey,
-  username: "Test User"
+  username: "Alex"
 )
 
 user2 = User.create!(
@@ -28,7 +28,7 @@ user2 = User.create!(
   password: 123456,
     # name: Faker::Name.name,
   bio: Faker::Quote.jack_handey,
-  username: Faker::Game.title
+  username: "Tom"
 )
 
 10.times do
