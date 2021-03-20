@@ -115,7 +115,7 @@ tours_list = [
 
  spare = ["Green escapes", "The Landmark Tour", "City to Sea", "FairyTale Tour", "Pirate Tour", "Alex's Mystery Tour"]
 
-10.times do
+13.times do
 # puts "creating 1 user & 1 tour"
 
   user = User.all.sample
