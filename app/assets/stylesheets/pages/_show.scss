@@ -18,7 +18,7 @@
   position: relative;
   justify-content: space-between;
   z-index: 100;
-  width: 50%;
+  width: 52%;
   padding: 5px;
 }
 
@@ -55,8 +55,9 @@
 }
 
 #activity-button {
-  position:relative;
+  position: fixed;
   z-index: 100;
+  right: 0px;
 }
 .step-button {
   padding: 7px;
